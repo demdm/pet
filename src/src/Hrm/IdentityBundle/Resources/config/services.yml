@@ -1,0 +1,8 @@
+services:
+
+    # Repository
+    App\Hrm\Identity\Domain\Model\User\UserRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineUserRepository'
+    App\Hrm\IdentityBundle\Repository\DoctrineUserRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\Hrm\Identity\Domain\Model\User\User

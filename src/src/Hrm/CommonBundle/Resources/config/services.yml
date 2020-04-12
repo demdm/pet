@@ -1,0 +1,5 @@
+services:
+
+    # Domain services
+    App\Hrm\Common\Infrastructure\Domain\Service\UuidGenerator: ~
+    App\Hrm\Common\Domain\Service\IdGenerator: '@App\Hrm\Common\Infrastructure\Domain\Service\UuidGenerator'

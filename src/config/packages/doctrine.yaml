@@ -1,5 +1,10 @@
 doctrine:
     dbal:
+        types:
+            !php/const App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType::NAME: App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType
+            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\User\UserIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\User\UserIdType
+            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\User\UserRoleType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\User\UserRoleType
+
         url: '%env(resolve:DATABASE_URL)%'
 
         # IMPORTANT: You MUST configure your server version,
@@ -8,11 +13,11 @@ doctrine:
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        auto_mapping: true
+        auto_mapping: false
+        default_entity_manager: default
         mappings:
-            App:
+            AppHrmIdentityDomainModel:
+                type: yml
+                prefix: App\Hrm\Identity\Domain\Model
+                dir: '%kernel.project_dir%/src/Hrm/IdentityBundle/Resources/config/doctrine'
                 is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
