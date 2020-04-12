@@ -1,0 +1,9 @@
+.idea
+
+docker/logs
+docker/database/data
+
+src/var
+
+.env
+docker/.env
