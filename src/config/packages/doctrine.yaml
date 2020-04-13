@@ -4,6 +4,8 @@ doctrine:
             !php/const App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType::NAME: App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType
             !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType
             !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountRoleType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountRoleType
+            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactIdType
+            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ProfileIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ProfileIdType
 
         url: '%env(resolve:DATABASE_URL)%'
 

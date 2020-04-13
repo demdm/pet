@@ -1,0 +1,26 @@
+App\Hrm\Identity\Domain\Model\Profile\Contact:
+    type: entity
+    table: profile_contact
+    repositoryClass: App\Hrm\IdentityBundle\Repository\Profile\DoctrineContactRepository
+    indexes:
+        idx_profile_contact_id_profile_id:
+            columns: [ id, profile_id ]
+        idx_profile_type:
+            columns: [ type ]
+    id:
+        id:
+            type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactIdType::NAME
+    fields:
+        profileId:
+            type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ProfileIdType::NAME
+        type:
+            type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactTypeType::NAME
+        value:
+            type: string
+        description:
+            type: string
+            nullable: true
+        isPublic:
+            type: boolean
+            options:
+                default: false

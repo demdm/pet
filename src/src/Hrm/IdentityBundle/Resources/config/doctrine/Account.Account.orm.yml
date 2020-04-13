@@ -1,7 +1,7 @@
 App\Hrm\Identity\Domain\Model\Account\Account:
     type: entity
     table: account
-    repositoryClass: App\Hrm\IdentityBundle\Repository\DoctrineAccountRepository
+    repositoryClass: App\Hrm\IdentityBundle\Repository\Account\DoctrineAccountRepository
     uniqueConstraints:
         uk_account_email:
             columns: [ email ]

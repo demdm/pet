@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+        "acelaya/doctrine-enum-type": "^2.3",
         "myclabs/php-enum": "^1.7",
         "ramsey/uuid": "^4.0",
         "sensio/framework-extra-bundle": "^5.5",

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Hrm\IdentityBundle\Repository;
+namespace App\Hrm\IdentityBundle\Repository\Account;
 
 use App\Hrm\Identity\Domain\Model\Account\Account;
 use App\Hrm\Identity\Domain\Model\Account\AccountRepository;

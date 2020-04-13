@@ -1,0 +1,19 @@
+parameters:
+    hrm.doctrine.dbal.connection_factory.enum_types: [] # todo: здесь должно быть "~", но ошибка
+
+services:
+
+    App\Hrm\Doctrine\ORM\Mapping\EagerQuoteStrategy: ~
+
+    doctrine.dbal.connection_factory:
+        class: App\Hrm\DoctrineBundle\ConnectionFactory
+        arguments:
+            $typesConfig: '%doctrine.dbal.connection_factory.types%'
+            $enumTypesConfig: '%hrm.doctrine.dbal.connection_factory.enum_types%'
+
+    ada.doctrine.event_listener.container_listener:
+        arguments:
+            - "@service_container"
+        class: App\Hrm\DoctrineBundle\EventListener\ContainerListener
+        tags:
+            - { name: doctrine.event_listener, event: getContainer }
