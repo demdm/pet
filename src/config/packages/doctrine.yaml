@@ -2,8 +2,8 @@ doctrine:
     dbal:
         types:
             !php/const App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType::NAME: App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType
-            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\User\UserIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\User\UserIdType
-            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\User\UserRoleType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\User\UserRoleType
+            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType
+            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountRoleType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountRoleType
 
         url: '%env(resolve:DATABASE_URL)%'
 

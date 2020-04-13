@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Hrm\Identity\Domain\Model\User;
+namespace App\Hrm\Identity\Domain\Model\Account;
 
 use Webmozart\Assert\Assert;
 
-class UserRole
+class AccountRole
 {
     const ADMINISTRATOR = 'administrator';
     const COMPANY_OWNER = 'company_owner';
@@ -27,9 +27,9 @@ class UserRole
     {
         Assert::notEmpty($value);
 
-        foreach ($value as $role) {
-            Assert::true(in_array($role, self::USER_ROLE_LIST, true));
-        }
+        array_walk($value, function (string $roleName) {
+            Assert::true(in_array($roleName, self::USER_ROLE_LIST, true));
+        });
 
         $this->value = $value;
     }

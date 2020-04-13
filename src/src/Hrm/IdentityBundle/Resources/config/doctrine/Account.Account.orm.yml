@@ -1,0 +1,22 @@
+App\Hrm\Identity\Domain\Model\Account\Account:
+    type: entity
+    table: account
+    repositoryClass: App\Hrm\IdentityBundle\Repository\DoctrineAccountRepository
+    uniqueConstraints:
+        uk_account_email:
+            columns: [ email ]
+    id:
+        id:
+            type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType::NAME
+    fields:
+        email:
+            type: !php/const App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType::NAME
+            length: 180
+            unique: true
+        passwordHash:
+            type: string
+            length: 256
+        roles:
+            type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountRoleType::NAME
+        createdAt:
+            type: datetime_immutable
