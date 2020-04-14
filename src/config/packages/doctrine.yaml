@@ -6,6 +6,7 @@ doctrine:
             !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountRoleType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountRoleType
             !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactIdType
             !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ProfileIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ProfileIdType
+            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactTypeType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactTypeType
 
         url: '%env(resolve:DATABASE_URL)%'
 

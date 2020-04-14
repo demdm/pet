@@ -10,9 +10,7 @@ return [
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
-
-    # src
+    Fresh\DoctrineEnumBundle\FreshDoctrineEnumBundle::class => ['all' => true],
     App\Hrm\CommonBundle\HrmCommonBundle::class => ['all' => true],
     App\Hrm\IdentityBundle\HrmIdentityBundle::class => ['all' => true],
-    App\Hrm\DoctrineBundle\HrmDoctrineBundle::class => ['all' => true],
 ];

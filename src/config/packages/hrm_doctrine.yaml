@@ -1,4 +1,0 @@
-hrm_doctrine:
-    dbal:
-        enum_types:
-            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactTypeType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactTypeType
