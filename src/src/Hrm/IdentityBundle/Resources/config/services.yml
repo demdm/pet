@@ -1,4 +1,10 @@
 services:
+    
+    # Controller
+    App\Hrm\IdentityBundle\Controller\:
+        autowire: true
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
 
     # Repository
     App\Hrm\Identity\Domain\Model\Account\AccountRepository: '@App\Hrm\IdentityBundle\Repository\Account\DoctrineAccountRepository'

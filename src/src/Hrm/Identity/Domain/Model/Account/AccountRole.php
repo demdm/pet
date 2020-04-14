@@ -11,6 +11,7 @@ class AccountRole
     const HR_MANAGER = 'hr_manager';
     const RECRUITER = 'recruiter';
     const EMPLOYEE = 'employee';
+    const USER = 'user';
 
     private const USER_ROLE_LIST = [
         self::ADMINISTRATOR,
@@ -18,6 +19,7 @@ class AccountRole
         self::HR_MANAGER,
         self::RECRUITER,
         self::EMPLOYEE,
+        self::USER,
     ];
 
     /** @var string[] */

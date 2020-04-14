@@ -9,15 +9,15 @@ App\Hrm\Identity\Domain\Model\Profile\Profile:
             columns: [ last_name ]
         idx_profile_birth_date:
             columns: [ birth_date ]
-    uniqueConstraints:
-        uk_profile_profile_id_account_id:
-            columns: [ id, account_id ]
+#    uniqueConstraints:
+#        uk_profile_profile_id_account_id:
+#            columns: [ id, account_id ]
     id:
         id:
             type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ProfileIdType::NAME
     fields:
-        accountId:
-            type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType::NAME
+#        accountId:
+#            type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType::NAME
         firstName:
             type: string
             length: 50
@@ -39,3 +39,7 @@ App\Hrm\Identity\Domain\Model\Profile\Profile:
         birthDate:
             type: datetime
             nullable: true
+    oneToMany:
+        contactList:
+            targetEntity: App\Hrm\Identity\Domain\Model\Profile\Contact
+            mappedBy: profile
