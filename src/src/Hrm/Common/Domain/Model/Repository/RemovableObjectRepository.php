@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrm\Common\Domain\Model\Repository;
+namespace App\Hrm\Common\Domain\Model\Repository;
 
 /**
  * Interface.

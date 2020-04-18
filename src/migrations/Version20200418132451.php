@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200414204247 extends AbstractMigration
+final class Version20200418132451 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -37,7 +37,7 @@ final class Version20200414204247 extends AbstractMigration
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE profile_contact (
           id VARCHAR(255) NOT NULL, 
-          profile_id VARCHAR(255) DEFAULT NULL, 
+          profile_id VARCHAR(255) NOT NULL, 
           type VARCHAR(255) NOT NULL, 
           value VARCHAR(255) NOT NULL, 
           description VARCHAR(255) DEFAULT NULL, 

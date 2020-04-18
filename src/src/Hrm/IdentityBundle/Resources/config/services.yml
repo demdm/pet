@@ -1,4 +1,18 @@
 services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Application Service
+    App\Hrm\Identity\Application\Service\Registration\CreateService: ~
+
+    # Application Query
+    App\Hrm\Identity\Application\Query\Account\FindOneQuery: ~
+
+    # Domain Service
+    App\Hrm\Identity\Domain\Service\Account\AccountPasswordHasher: '@App\Hrm\IdentityBundle\Service\Domain\Account\SymfonyAccountPasswordHasher'
+    App\Hrm\IdentityBundle\Service\Domain\Account\SymfonyAccountPasswordHasher: ~
     
     # Controller
     App\Hrm\IdentityBundle\Controller\:
@@ -12,3 +26,16 @@ services:
         factory: ['@doctrine', getRepository]
         arguments:
             - App\Hrm\Identity\Domain\Model\Account\Account
+
+    App\Hrm\Identity\Domain\Model\Profile\ProfileRepository: '@App\Hrm\IdentityBundle\Repository\Profile\DoctrineProfileRepository'
+    App\Hrm\IdentityBundle\Repository\Profile\DoctrineProfileRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\Hrm\Identity\Domain\Model\Profile\Profile
+
+
+    App\Hrm\Identity\Domain\Model\Profile\ContactRepository: '@App\Hrm\IdentityBundle\Repository\Profile\DoctrineContactRepository'
+    App\Hrm\IdentityBundle\Repository\Profile\DoctrineContactRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\Hrm\Identity\Domain\Model\Profile\Contact

@@ -9,6 +9,7 @@ final class Contact
     private string $value;
     private ?string $description;
     private bool $isPublic;
+    private ProfileId $profileId;
     private Profile $profile;
 
     final protected function __construct()
@@ -17,6 +18,7 @@ final class Contact
 
     public static function create(
         ContactId $id,
+        Profile $profile,
         ContactType $type,
         string $value,
         bool $isPublic = false,
@@ -25,6 +27,7 @@ final class Contact
     {
         $self = new self();
         $self->id = $id;
+        $self->profile = $profile;
         $self->type = $type;
         $self->value = $value;
         $self->description = $description;

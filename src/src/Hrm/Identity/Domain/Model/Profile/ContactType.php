@@ -17,7 +17,7 @@ use MyCLabs\Enum\Enum;
  * @method static ContactType VIBER()
  * @method static ContactType WHATSUP()
  */
-class ContactType extends Enum
+final class ContactType extends Enum
 {
     const PHONE = 'phone';
     const EMAIL = 'email';

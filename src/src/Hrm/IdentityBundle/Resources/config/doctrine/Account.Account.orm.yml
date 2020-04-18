@@ -9,6 +9,8 @@ App\Hrm\Identity\Domain\Model\Account\Account:
         id:
             type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType::NAME
     fields:
+        profileId:
+            type: !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ProfileIdType::NAME
         email:
             type: !php/const App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType::NAME
             length: 180
@@ -23,8 +25,10 @@ App\Hrm\Identity\Domain\Model\Account\Account:
     oneToOne:
         profile:
             targetEntity: App\Hrm\Identity\Domain\Model\Profile\Profile
+            cascade: [ persist, remove ]
             joinColumn:
                 name: profile_id
                 referencedColumnName: id
                 nullable: false
                 onDelete: CASCADE
+                onPersist: CASCADE

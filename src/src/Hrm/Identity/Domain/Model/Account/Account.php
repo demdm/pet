@@ -7,36 +7,36 @@ use App\Hrm\Identity\Domain\Model\Profile\Profile;
 use App\Hrm\Identity\Domain\Model\Profile\ProfileId;
 use DateTimeImmutable;
 
-class Account
+final class Account
 {
     private AccountId $id;
+    private Profile $profile;
     private Email $email;
     private string $passwordHash;
     private AccountRole $roles;
     private DateTimeImmutable $createdAt;
-    private Profile $profile;
+    private ProfileId $profileId;
 
-    final protected function __construct()
+    protected function __construct()
     {
     }
 
     public static function create(
         AccountId $id,
+        Profile $profile,
         Email $email,
         string $passwordHash,
         AccountRole $roles,
-        DateTimeImmutable $createdAt,
-        Profile $profile
+        DateTimeImmutable $createdAt
     ): self
     {
         $self = new self();
         $self->id = $id;
+        $self->profile = $profile;
         $self->email = $email;
         $self->passwordHash = $passwordHash;
         $self->roles = $roles;
         $self->createdAt = $createdAt;
-
-        $self->profile = $profile;
 
         return $self;
     }

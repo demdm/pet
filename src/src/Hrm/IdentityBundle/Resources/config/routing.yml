@@ -2,3 +2,8 @@ app_hrm_identity_registration_index:
     path:       /register
     defaults:   { _controller: App\Hrm\IdentityBundle\Controller\RegistrationController::index }
     methods:    [GET]
+
+app_hrm_identity_account_index:
+    path:       /account
+    defaults:   { _controller: App\Hrm\IdentityBundle\Controller\AccountController::index }
+    methods:    [GET]

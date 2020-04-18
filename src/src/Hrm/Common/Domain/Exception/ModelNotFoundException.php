@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrm\Common\Domain\Exception;
+namespace App\Hrm\Common\Domain\Exception;
 
 use Throwable;
 

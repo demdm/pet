@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrm\Common\Domain\Model\Repository;
+namespace App\Hrm\Common\Domain\Model\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\ORMInvalidArgumentException;

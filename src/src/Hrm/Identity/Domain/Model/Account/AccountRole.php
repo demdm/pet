@@ -4,7 +4,7 @@ namespace App\Hrm\Identity\Domain\Model\Account;
 
 use Webmozart\Assert\Assert;
 
-class AccountRole
+final class AccountRole
 {
     const ADMINISTRATOR = 'administrator';
     const COMPANY_OWNER = 'company_owner';
@@ -25,19 +25,34 @@ class AccountRole
     /** @var string[] */
     private array $value;
 
-    public function __construct(array $value)
+    public function __construct(string $roleName)
     {
-        Assert::notEmpty($value);
+        $this->isValid($roleName);
 
-        array_walk($value, function (string $roleName) {
-            Assert::true(in_array($roleName, self::USER_ROLE_LIST, true));
-        });
-
-        $this->value = $value;
+        $this->value = [$roleName];
     }
 
     public function getValue(): array
     {
         return $this->value;
+    }
+
+    public function addRole(string $roleName): void
+    {
+        $this->isValid($roleName);
+
+        if (!isset($this->value[$roleName])) {
+            $this->value[] = $roleName;
+        }
+    }
+
+    private function isValid(string $roleName): void
+    {
+        Assert::true(in_array($roleName, self::USER_ROLE_LIST, true));
+    }
+
+    public function __toString(): string
+    {
+        return json_encode($this->value);
     }
 }

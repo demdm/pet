@@ -2,10 +2,10 @@
 
 namespace App\Hrm\IdentityBundle\Repository\Account;
 
+use App\Hrm\Common\Domain\Model\Repository\ExtendedObjectRepositoryTrait;
 use App\Hrm\Identity\Domain\Model\Account\Account;
 use App\Hrm\Identity\Domain\Model\Account\AccountRepository;
 use Doctrine\ORM\EntityRepository;
-use Hrm\Common\Domain\Model\Repository\ExtendedObjectRepositoryTrait;
 
 /**
  * @method Account|null find($id, $lockMode = null, $lockVersion = null)

@@ -1,8 +1,8 @@
 <?php
 
-namespace Hrm\Common\Domain\Model\Repository;
+namespace App\Hrm\Common\Domain\Model\Repository;
 
-use Hrm\Common\Domain\Exception\ModelNotFoundException;
+use App\Hrm\Common\Domain\Exception\ModelNotFoundException;
 
 /**
  * Interface.

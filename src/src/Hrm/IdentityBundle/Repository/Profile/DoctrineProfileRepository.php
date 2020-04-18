@@ -2,10 +2,10 @@
 
 namespace App\Hrm\IdentityBundle\Repository\Profile;
 
+use App\Hrm\Common\Domain\Model\Repository\ExtendedObjectRepositoryTrait;
 use App\Hrm\Identity\Domain\Model\Profile\Profile;
 use App\Hrm\Identity\Domain\Model\Profile\ProfileRepository;
 use Doctrine\ORM\EntityRepository;
-use Hrm\Common\Domain\Model\Repository\ExtendedObjectRepositoryTrait;
 
 /**
  * @method Profile|null find($id, $lockMode = null, $lockVersion = null)

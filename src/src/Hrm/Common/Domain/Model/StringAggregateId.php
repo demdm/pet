@@ -2,7 +2,7 @@
 
 namespace App\Hrm\Common\Domain\Model;
 
-class StringAggregateId
+abstract class StringAggregateId
 {
     protected string $id;
 

@@ -2,10 +2,11 @@
 
 namespace App\Hrm\Identity\Domain\Model\Profile;
 
+use App\Hrm\Identity\Domain\Model\Account\Account;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
-class Profile
+final class Profile
 {
     private ProfileId $id;
     private string $firstName;
@@ -15,10 +16,12 @@ class Profile
     private ?string $address;
     private ?DateTimeInterface $birthDate;
 
-    /** @var Contact[]|ArrayCollection  */
-    private ArrayCollection $contactList;
+    /** @var Contact[]|ArrayCollection */
+    private $contactList;
 
-    final protected function __construct()
+    private Account $account;
+
+    protected function __construct()
     {
         $this->contactList = new ArrayCollection();
     }
@@ -37,8 +40,23 @@ class Profile
         return $self;
     }
 
-    public function addContact(Contact $contact)
+    public function addContact(
+        ContactId $id,
+        ContactType $type,
+        string $value,
+        bool $isPublic = false,
+        ?string $description = null
+    ): void
     {
+        $contact = Contact::create(
+            $id,
+            $this,
+            ContactType::EMAIL(),
+            $value,
+            $isPublic,
+            $description
+        );
+
         $this->contactList->add($contact);
     }
 }
