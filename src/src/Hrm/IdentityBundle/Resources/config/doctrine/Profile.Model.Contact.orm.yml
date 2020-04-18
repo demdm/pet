@@ -1,0 +1,29 @@
+App\Hrm\Identity\Profile\Model\Contact:
+    type: entity
+    table: profile_contact
+    repositoryClass: App\Hrm\IdentityBundle\Repository\DoctrineContactRepository
+    indexes:
+        idx_profile_type:
+            columns: [ type ]
+    id:
+        id:
+            type: string
+    fields:
+        profileId:
+            type: string
+        type:
+            type: string
+        value:
+            type: string
+        description:
+            type: string
+            nullable: true
+        isPublic:
+            type: boolean
+            options:
+                default: false
+    manyToOne:
+        profile:
+            targetEntity: App\Hrm\Identity\Profile\Model\Profile
+            inversedBy: contactList
+            cascade: [ persist, remove ]

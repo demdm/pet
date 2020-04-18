@@ -1,13 +1,13 @@
 services:
-
     _defaults:
         autowire: true
         autoconfigure: true
 
-    # Domain service
-    App\Hrm\Common\Infrastructure\Domain\Service\UuidGenerator: ~
-    App\Hrm\Common\Domain\Service\IdGenerator: '@App\Hrm\Common\Infrastructure\Domain\Service\UuidGenerator'
 
-    # Application service
-    App\Hrm\Common\Application\Service\UnitOfWork: '@App\Hrm\CommonBundle\Service\Application\DoctrineUnitOfWork'
-    App\Hrm\CommonBundle\Service\Application\DoctrineUnitOfWork: ~
+    # Service
+
+    App\Hrm\CommonBundle\Service\GenerateUuidService: ~
+    App\Hrm\Common\Service\GenerateIdentifierService: '@App\Hrm\CommonBundle\Service\GenerateUuidService'
+    
+    App\Hrm\CommonBundle\Service\DoctrineCommitTransactionService: ~
+    App\Hrm\Common\Service\CommitTransactionService: '@App\Hrm\CommonBundle\Service\DoctrineCommitTransactionService'

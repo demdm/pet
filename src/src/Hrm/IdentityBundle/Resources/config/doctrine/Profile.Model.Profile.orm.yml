@@ -1,0 +1,47 @@
+App\Hrm\Identity\Profile\Model\Profile:
+    type: entity
+    table: profile
+    repositoryClass: App\Hrm\IdentityBundle\Repository\DoctrineProfileRepository
+    indexes:
+        idx_profile_first_name:
+            columns: [ first_name ]
+        idx_profile_last_name:
+            columns: [ last_name ]
+        idx_profile_birth_date:
+            columns: [ birth_date ]
+    id:
+        id:
+            type: string
+    fields:
+        firstName:
+            type: string
+            length: 50
+        lastName:
+            type: string
+            length: 100
+        middleName:
+            type: string
+            length: 100
+            nullable: true
+        photoPath:
+            type: string
+            length: 256
+            nullable: true
+        address:
+            type: string
+            length: 256
+            nullable: true
+        birthDate:
+            type: datetime
+            nullable: true
+    oneToOne:
+        account:
+            targetEntity: App\Hrm\Identity\Account\Model\Account
+            mappedBy: profile
+            cascade: [ persist, remove ]
+            onPersist: CASCADE
+    oneToMany:
+        contactList:
+            targetEntity: App\Hrm\Identity\Profile\Model\Contact
+            mappedBy: profile
+            cascade: [ persist, remove ]

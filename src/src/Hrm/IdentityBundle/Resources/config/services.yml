@@ -4,38 +4,42 @@ services:
         autowire: true
         autoconfigure: true
 
-    # Application Service
-    App\Hrm\Identity\Application\Service\Registration\CreateService: ~
 
-    # Application Query
-    App\Hrm\Identity\Application\Query\Account\FindOneQuery: ~
-
-    # Domain Service
-    App\Hrm\Identity\Domain\Service\Account\AccountPasswordHasher: '@App\Hrm\IdentityBundle\Service\Domain\Account\SymfonyAccountPasswordHasher'
-    App\Hrm\IdentityBundle\Service\Domain\Account\SymfonyAccountPasswordHasher: ~
-    
     # Controller
+
     App\Hrm\IdentityBundle\Controller\:
         autowire: true
         resource: '../../Controller'
         tags: ['controller.service_arguments']
 
+
+    # Facade
+
+    App\Hrm\Identity\Account\Facade\CreateFacade: ~
+
+
+    # Service
+
+    App\Hrm\IdentityBundle\Service\SymfonyHashPasswordService: ~
+    App\Hrm\Identity\Account\Service\HashPasswordService: '@App\Hrm\IdentityBundle\Service\SymfonyHashPasswordService'
+    
+
     # Repository
-    App\Hrm\Identity\Domain\Model\Account\AccountRepository: '@App\Hrm\IdentityBundle\Repository\Account\DoctrineAccountRepository'
-    App\Hrm\IdentityBundle\Repository\Account\DoctrineAccountRepository:
+
+    App\Hrm\Identity\Account\Repository\AccountRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineAccountRepository'
+    App\Hrm\IdentityBundle\Repository\DoctrineAccountRepository:
         factory: ['@doctrine', getRepository]
         arguments:
-            - App\Hrm\Identity\Domain\Model\Account\Account
+            - App\Hrm\Identity\Account\Model\Account
 
-    App\Hrm\Identity\Domain\Model\Profile\ProfileRepository: '@App\Hrm\IdentityBundle\Repository\Profile\DoctrineProfileRepository'
-    App\Hrm\IdentityBundle\Repository\Profile\DoctrineProfileRepository:
+    App\Hrm\Identity\Profile\Repository\ProfileRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineProfileRepository'
+    App\Hrm\IdentityBundle\Repository\DoctrineProfileRepository:
         factory: ['@doctrine', getRepository]
         arguments:
-            - App\Hrm\Identity\Domain\Model\Profile\Profile
+            - App\Hrm\Identity\Profile\Model\Profile
 
-
-    App\Hrm\Identity\Domain\Model\Profile\ContactRepository: '@App\Hrm\IdentityBundle\Repository\Profile\DoctrineContactRepository'
-    App\Hrm\IdentityBundle\Repository\Profile\DoctrineContactRepository:
+    App\Hrm\Identity\Profile\Repository\ContactRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineContactRepository'
+    App\Hrm\IdentityBundle\Repository\DoctrineContactRepository:
         factory: ['@doctrine', getRepository]
         arguments:
-            - App\Hrm\Identity\Domain\Model\Profile\Contact
+            - App\Hrm\Identity\Profile\Model\Contact

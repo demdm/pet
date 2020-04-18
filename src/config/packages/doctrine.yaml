@@ -1,12 +1,6 @@
 doctrine:
     dbal:
-        types:
-            !php/const App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType::NAME: App\Hrm\CommonBundle\Doctrine\DBAL\Types\EmailType
-            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountIdType
-            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountRoleType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Account\AccountRoleType
-            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactIdType
-            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ProfileIdType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ProfileIdType
-            !php/const App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactTypeType::NAME: App\Hrm\IdentityBundle\Doctrine\DBAL\Types\Profile\ContactTypeType
+        types: ~
 
         url: '%env(resolve:DATABASE_URL)%'
 
@@ -19,8 +13,8 @@ doctrine:
         auto_mapping: false
         default_entity_manager: default
         mappings:
-            AppHrmIdentityDomainModel:
+            AppHrmIdentity:
                 type: yml
-                prefix: App\Hrm\Identity\Domain\Model
+                prefix: App\Hrm\Identity
                 dir: '%kernel.project_dir%/src/Hrm/IdentityBundle/Resources/config/doctrine'
                 is_bundle: false
