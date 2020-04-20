@@ -1,0 +1,29 @@
+App\Hrm\Company\Model\Company:
+    type: entity
+    table: hrm_company
+    repositoryClass: App\Hrm\CompanyBundle\Repository\DoctrineCompanyRepository
+    id:
+        id:
+            type: string
+    fields:
+        name:
+            type: string
+        logoPath:
+            type: string
+            length: 256
+            nullable: true
+        createdAt:
+            type: datetime_immutable
+    oneToOne:
+        createdBy:
+            targetEntity: App\Hrm\Identity\Model\Account
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: created_by
+                referencedColumnName: id
+                nullable: false
+    oneToMany:
+        officeList:
+            targetEntity: App\Hrm\Company\Model\Office
+            cascade: [ persist, remove ]
+            mappedBy: company

@@ -2,7 +2,6 @@
 
 namespace App\Hrm\Identity\Model;
 
-use App\Hrm\Identity\Model\Profile;
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;
 

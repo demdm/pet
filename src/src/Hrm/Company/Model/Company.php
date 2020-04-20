@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Hrm\Company\Model;
+
+use App\Hrm\Identity\Model\Account;
+use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Webmozart\Assert\Assert;
+
+final class Company
+{
+    private string $id;
+    private string $name;
+    private Account $createdBy;
+    private ?string $logoPath;
+    private DateTimeImmutable $createdAt;
+
+    /**
+     * @var Account[]|ArrayCollection
+     */
+    private $ownedByList;
+
+    /**
+     * @var Office[]|ArrayCollection
+     */
+    private $officeList;
+
+    private function __construct()
+    {
+        $this->ownedByList = new ArrayCollection();
+        $this->officeList = new ArrayCollection();
+    }
+
+    public static function create(
+        string $id,
+        string $name,
+        Account $createdBy,
+        DateTimeImmutable $createdAt,
+        ?string $logoPath = null
+    ): self
+    {
+        Assert::uuid($id);
+        Assert::lengthBetween($name, 1, 256);
+        Assert::nullOrLengthBetween($logoPath, 1, 256);
+
+        $self = new self();
+        $self->id = $id;
+        $self->name = $name;
+        $self->ownedByList->add($createdBy);
+        $self->createdBy = $createdBy;
+        $self->createdAt = $createdAt;
+        $self->logoPath = $logoPath;
+
+        return $self;
+    }
+
+    public function addOffice(
+        string $id,
+        string $address,
+        DateTimeImmutable $createdAt
+    ): void
+    {
+        $office = Office::create(
+            $id,
+            $this,
+            $address,
+            $createdAt
+        );
+
+        $this->officeList->add($office);
+    }
+}

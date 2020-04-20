@@ -12,4 +12,5 @@ return [
     Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
     App\Hrm\CommonBundle\HrmCommonBundle::class => ['all' => true],
     App\Hrm\IdentityBundle\HrmIdentityBundle::class => ['all' => true],
+    App\Hrm\CompanyBundle\HrmCompanyBundle::class => ['all' => true],
 ];

@@ -1,0 +1,16 @@
+App\Hrm\Company\Model\Office:
+    type: entity
+    table: hrm_company_office
+    id:
+        id:
+            type: string
+    fields:
+        address:
+            type: string
+        createdAt:
+            type: datetime_immutable
+    manyToOne:
+        company:
+            targetEntity: App\Hrm\Company\Model\Company
+            mappedBy: officeList
+            cascade: [ persist, remove ]

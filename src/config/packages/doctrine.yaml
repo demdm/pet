@@ -18,3 +18,8 @@ doctrine:
                 prefix: App\Hrm\Identity\Model
                 dir: '%kernel.project_dir%/src/Hrm/IdentityBundle/Resources/config/doctrine'
                 is_bundle: false
+            HrmCompany:
+                type: yml
+                prefix: App\Hrm\Company\Model
+                dir: '%kernel.project_dir%/src/Hrm/CompanyBundle/Resources/config/doctrine'
+                is_bundle: false
