@@ -23,7 +23,7 @@ class ArrayEnumType extends ArrayType
         $self = new static();
 
         foreach ($all as $one) {
-            Assert::true(in_array($one, $self->enumList));
+            $self->assert($one);
         }
 
         array_unique($all);

@@ -5,7 +5,7 @@ namespace App\Hrm\Identity\Account\Model;
 use App\Hrm\Common\Type\EmailType;
 use App\Hrm\Common\Type\ArrayEnumType;
 use App\Hrm\Common\Type\StringIdType;
-use App\Hrm\Common\Type\String1_256Type;
+use App\Hrm\Common\Type\StringType;
 use App\Hrm\Identity\Profile\Model\Profile;
 use DateTimeImmutable;
 
@@ -27,7 +27,7 @@ final class Account
         StringIdType $id,
         Profile $profile,
         EmailType $email,
-        String1_256Type $passwordHash,
+        StringType $passwordHash,
         ArrayEnumType $roles,
         DateTimeImmutable $createdAt
     ): self

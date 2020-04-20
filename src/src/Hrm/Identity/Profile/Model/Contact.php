@@ -3,7 +3,7 @@
 namespace App\Hrm\Identity\Profile\Model;
 
 use App\Hrm\Common\Type\StringIdType;
-use App\Hrm\Common\Type\String1_256Type;
+use App\Hrm\Common\Type\StringType;
 
 final class Contact
 {
@@ -23,9 +23,9 @@ final class Contact
         StringIdType $id,
         Profile $profile,
         ContactType $type,
-        String1_256Type $value,
+        StringType $value,
         bool $isPublic = false,
-        ?String1_256Type $description = null
+        ?StringType $description = null
     ): self
     {
         $self = new self();

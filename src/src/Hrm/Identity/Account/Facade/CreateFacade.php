@@ -5,7 +5,7 @@ namespace App\Hrm\Identity\Account\Facade;
 use App\Hrm\Common\Service\CommitTransactionService;
 use App\Hrm\Common\Service\GenerateIdentifierService;
 use App\Hrm\Common\Type\EmailType;
-use App\Hrm\Common\Type\String1_256Type;
+use App\Hrm\Common\Type\StringType;
 use App\Hrm\Common\Type\StringIdType;
 use App\Hrm\Identity\Account\Model\Account;
 use App\Hrm\Identity\Account\Model\AccountRole;
@@ -38,21 +38,21 @@ final class CreateFacade
     {
         $profile = Profile::create(
             new StringIdType($this->generateIdentifierService->generate()),
-            new String1_256Type($request->firstName),
-            new String1_256Type($request->lastName)
+            new StringType($request->firstName),
+            new StringType($request->lastName)
         );
 
         $profile->addContact(
             new StringIdType($this->generateIdentifierService->generate()),
             new ContactType(ContactType::EMAIL),
-            new String1_256Type($request->email)
+            new StringType($request->email)
         );
 
         $account = Account::create(
             new StringIdType($this->generateIdentifierService->generate()),
             $profile,
             new EmailType($request->email),
-            new String1_256Type($this->hashPasswordService->hash($request->password)),
+            new StringType($this->hashPasswordService->hash($request->password)),
             AccountRole::setAll([AccountRole::USER, AccountRole::RECRUITER]),
             new DateTimeImmutable()
         );

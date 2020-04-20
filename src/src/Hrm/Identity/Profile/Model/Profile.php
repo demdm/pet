@@ -2,7 +2,7 @@
 
 namespace App\Hrm\Identity\Profile\Model;
 
-use App\Hrm\Common\Type\String1_256Type;
+use App\Hrm\Common\Type\StringType;
 use App\Hrm\Common\Type\StringIdType;
 use App\Hrm\Identity\Account\Model\Account;
 use DateTimeInterface;
@@ -29,8 +29,8 @@ final class Profile
 
     public static function create(
         StringIdType $id,
-        String1_256Type $firstName,
-        String1_256Type $lastName
+        StringType $firstName,
+        StringType $lastName
     ): self
     {
         $self = new self();
@@ -44,9 +44,9 @@ final class Profile
     public function addContact(
         StringIdType $id,
         ContactType $type,
-        String1_256Type $value,
+        StringType $value,
         bool $isPublic = false,
-        ?String1_256Type $description = null
+        ?StringType $description = null
     ): void
     {
         $contact = Contact::create(
