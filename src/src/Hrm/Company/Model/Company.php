@@ -21,10 +21,22 @@ final class Company
     /** @var Office[]|ArrayCollection */
     private $officeList;
 
+    /** @var Office[]|ArrayCollection */
+    private $positionList;
+
+    /** @var Department[]|ArrayCollection */
+    private $departmentList;
+
+    /** @var Employee[]|ArrayCollection */
+    private $employeeList;
+
     private function __construct()
     {
         $this->ownerList = new ArrayCollection();
         $this->officeList = new ArrayCollection();
+        $this->positionList = new ArrayCollection();
+        $this->departmentList = new ArrayCollection();
+        $this->employeeList = new ArrayCollection();
     }
 
     public static function create(
@@ -64,5 +76,55 @@ final class Company
         );
 
         $this->officeList->add($office);
+    }
+
+    public function addPosition(
+        string $id,
+        string $name
+    ): void
+    {
+        $position = Position::create(
+            $id,
+            $name,
+            $this
+        );
+
+        $this->positionList->add($position);
+    }
+
+    public function addDepartment(
+        string $id,
+        string $name,
+        Employee $head,
+        ?string $description = null
+    ): void
+    {
+        $position = Department::create(
+            $id,
+            $name,
+            $head,
+            $this,
+            $description
+        );
+
+        $this->departmentList->add($position);
+    }
+
+    public function addEmployee(
+        string $id,
+        string $name,
+        Employee $head,
+        ?string $description = null
+    ): void
+    {
+        $position = Employee::create(
+            $id,
+            $name,
+            $head,
+            $this,
+            $description
+        );
+
+        $this->departmentList->add($position);
     }
 }

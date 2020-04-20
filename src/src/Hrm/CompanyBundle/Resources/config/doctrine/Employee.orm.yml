@@ -1,0 +1,72 @@
+App\Hrm\Company\Model\Employee:
+    type: entity
+    table: hrm_company_employee
+    repositoryClass: App\Hrm\CompanyBundle\Repository\DoctrineEmployeeRepository
+    id:
+        id:
+            type: string
+    fields:
+        isWorkingRemotely:
+            type: boolean
+            options:
+                default: false
+        isPending:
+            type: boolean
+            options:
+                default: false
+        isActive:
+            type: boolean
+            options:
+                default: false
+        isHired:
+            type: boolean
+            options:
+                default: false
+        isFired:
+            type: boolean
+            options:
+                default: false
+        hiredAt:
+            type: datetime
+            nullable: true
+        firedAt:
+            type: datetime
+            nullable: true
+    oneToOne:
+        account:
+            targetEntity: App\Hrm\Identity\Model\Account
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: account_id
+                referencedColumnName: id
+                nullable: false
+    manyToOne:
+        company:
+            targetEntity: App\Hrm\Company\Model\Company
+            inversedBy: employeeList
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: company_id
+                referencedColumnName: id
+                nullable: false
+        office:
+            targetEntity: App\Hrm\Company\Model\Office
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: office_id
+                referencedColumnName: id
+                nullable: false
+        department:
+            targetEntity: App\Hrm\Company\Model\Department
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: department_id
+                referencedColumnName: id
+                nullable: false
+        position:
+            targetEntity: App\Hrm\Company\Model\Position
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: position_id
+                referencedColumnName: id
+                nullable: false

@@ -25,3 +25,27 @@ services:
         factory: ['@doctrine', getRepository]
         arguments:
             - App\Hrm\Company\Model\Company
+    
+    App\Hrm\Company\Repository\OfficeRepository: '@App\Hrm\CompanyBundle\Repository\DoctrineOfficeRepository'
+    App\Hrm\CompanyBundle\Repository\DoctrineOfficeRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\Hrm\Company\Model\Office
+
+    App\Hrm\Company\Repository\DepartmentRepository: '@App\Hrm\CompanyBundle\Repository\DoctrineDepartmentRepository'
+    App\Hrm\CompanyBundle\Repository\DoctrineDepartmentRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\Hrm\Company\Model\Department
+
+    App\Hrm\Company\Repository\PositionRepository: '@App\Hrm\CompanyBundle\Repository\DoctrinePositionRepository'
+    App\Hrm\CompanyBundle\Repository\DoctrinePositionRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\Hrm\Company\Model\Position
+
+    App\Hrm\Company\Repository\EmployeeRepository: '@App\Hrm\CompanyBundle\Repository\DoctrineEmployeeRepository'
+    App\Hrm\CompanyBundle\Repository\DoctrineEmployeeRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\Hrm\Company\Model\Employee

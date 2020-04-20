@@ -33,7 +33,7 @@ final class RegistrationHandler
     public function handle(Registration $command): void
     {
         $account = Account::create(
-            $this->generateIdentifier->generate(),
+            $command->uuid,
             $command->email,
             $this->hashPassword->hash($command->password),
             [Account::ROLE_USER],

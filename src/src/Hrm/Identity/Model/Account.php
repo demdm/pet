@@ -38,6 +38,7 @@ final class Account
 
     private function __construct()
     {
+        $this->roles = [];
     }
 
     public static function create(

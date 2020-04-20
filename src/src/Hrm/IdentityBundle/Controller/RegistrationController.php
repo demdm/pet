@@ -14,13 +14,14 @@ class RegistrationController
         GenerateIdentifier $generateIdentifier
     ): Response
     {
-        $userId = $generateIdentifier->generate();
+        // $userId = $generateIdentifier->generate();
+        $userId = '4e9a88c0-7e67-42c7-8897-a5b74f5b10ac';
 
         $registration = new Registration(
             $userId,
             'Dima',
             'Demianov',
-            'd65950@gmail.com3',
+            'd65950@gmail.com',
             'qwerty'
         );
 

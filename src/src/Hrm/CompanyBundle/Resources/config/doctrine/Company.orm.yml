@@ -27,6 +27,14 @@ App\Hrm\Company\Model\Company:
             targetEntity: App\Hrm\Company\Model\Office
             cascade: [ persist, remove ]
             mappedBy: company
+        positionList:
+            targetEntity: App\Hrm\Company\Model\Position
+            cascade: [ persist, remove ]
+            mappedBy: company
+        departmentList:
+            targetEntity: App\Hrm\Company\Model\Department
+            cascade: [ persist, remove ]
+            mappedBy: company
     manyToMany:
         ownerList:
             targetEntity: App\Hrm\Identity\Model\Account

@@ -1,0 +1,34 @@
+App\Hrm\Company\Model\Department:
+    type: entity
+    table: hrm_company_department
+    repositoryClass: App\Hrm\CompanyBundle\Repository\DoctrineDepartmentRepository
+    id:
+        id:
+            type: string
+    fields:
+        name:
+            type: string
+        employeeCount:
+            type: integer
+            options:
+                default: 0
+        description:
+            type: string
+            nullable: true
+    manyToOne:
+        head:
+            targetEntity: App\Hrm\Company\Model\Employee
+            mappedBy: headOfDepartmentList
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: head_id
+                referencedColumnName: id
+                nullable: false
+        company:
+            targetEntity: App\Hrm\Company\Model\Company
+            mappedBy: departmentList
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: company_id
+                referencedColumnName: id
+                nullable: false

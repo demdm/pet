@@ -2,7 +2,6 @@
 
 namespace App\Hrm\Identity\Model;
 
-use App\Hrm\Identity\Model\Account;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Webmozart\Assert\Assert;

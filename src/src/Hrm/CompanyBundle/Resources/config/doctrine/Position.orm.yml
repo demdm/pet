@@ -1,19 +1,21 @@
-App\Hrm\Company\Model\Office:
+App\Hrm\Company\Model\Position:
     type: entity
-    table: hrm_company_office
-    repositoryClass: App\Hrm\CompanyBundle\Repository\DoctrineOfficeRepository
+    table: hrm_company_position
+    repositoryClass: App\Hrm\CompanyBundle\Repository\DoctrinePositionRepository
     id:
         id:
             type: string
     fields:
-        address:
+        name:
             type: string
-        createdAt:
-            type: datetime_immutable
+        employeeCount:
+            type: integer
+            options:
+                default: 0
     manyToOne:
         company:
             targetEntity: App\Hrm\Company\Model\Company
-            mappedBy: officeList
+            mappedBy: positionList
             cascade: [ persist, remove ]
             joinColumn:
                 name: company_id
