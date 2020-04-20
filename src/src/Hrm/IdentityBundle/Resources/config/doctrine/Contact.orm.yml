@@ -1,10 +1,10 @@
-App\Hrm\Identity\Profile\Model\Contact:
+App\Hrm\Identity\Model\Contact:
     type: entity
-    table: profile_contact
+    table: hrm_identity_profile_contact
     repositoryClass: App\Hrm\IdentityBundle\Repository\DoctrineContactRepository
     indexes:
-        idx_profile_type:
-            columns: [ type ]
+        idx__profile__profile_id:
+            columns: [ profile_id ]
     id:
         id:
             type: string
@@ -24,6 +24,6 @@ App\Hrm\Identity\Profile\Model\Contact:
                 default: false
     manyToOne:
         profile:
-            targetEntity: App\Hrm\Identity\Profile\Model\Profile
+            targetEntity: App\Hrm\Identity\Model\Profile
             inversedBy: contactList
             cascade: [ persist, remove ]

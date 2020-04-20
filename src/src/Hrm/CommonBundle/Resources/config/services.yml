@@ -6,8 +6,8 @@ services:
 
     # Service
 
-    App\Hrm\CommonBundle\Service\GenerateUuidService: ~
-    App\Hrm\Common\Service\GenerateIdentifierService: '@App\Hrm\CommonBundle\Service\GenerateUuidService'
+    App\Hrm\CommonBundle\Service\GenerateUuid: ~
+    App\Hrm\Common\Service\GenerateIdentifier: '@App\Hrm\CommonBundle\Service\GenerateUuid'
     
-    App\Hrm\CommonBundle\Service\DoctrineCommitTransactionService: ~
-    App\Hrm\Common\Service\CommitTransactionService: '@App\Hrm\CommonBundle\Service\DoctrineCommitTransactionService'
+    App\Hrm\CommonBundle\Service\DoctrineCommitTransaction: ~
+    App\Hrm\Common\Service\CommitTransaction: '@App\Hrm\CommonBundle\Service\DoctrineCommitTransaction'

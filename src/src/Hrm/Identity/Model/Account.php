@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Hrm\Identity\Account\Model;
+namespace App\Hrm\Identity\Model;
 
-use App\Hrm\Identity\Profile\Model\Profile;
+use App\Hrm\Identity\Model\Profile;
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;
 
@@ -25,12 +25,11 @@ final class Account
     ];
 
     private string $id;
-    private Profile $profile;
     private string $email;
     private string $passwordHash;
     private array $roles;
     private DateTimeImmutable $createdAt;
-    private string $profileId;
+    private Profile $profile;
 
     private function __construct()
     {
@@ -38,7 +37,6 @@ final class Account
 
     public static function create(
         string $id,
-        Profile $profile,
         string $email,
         string $passwordHash,
         array $roles,
@@ -52,7 +50,6 @@ final class Account
 
         $self = new self();
         $self->id = $id;
-        $self->profile = $profile;
         $self->email = $email;
         $self->passwordHash = $passwordHash;
         $self->roles = $roles;

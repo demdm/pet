@@ -2,10 +2,10 @@
 
 namespace App\Hrm\CommonBundle\Service;
 
-use App\Hrm\Common\Service\GenerateIdentifierService;
+use App\Hrm\Common\Service\GenerateIdentifier;
 use Ramsey\Uuid\Uuid;
 
-class GenerateUuidService implements GenerateIdentifierService
+class GenerateUuid implements GenerateIdentifier
 {
     public function generate(): string
     {

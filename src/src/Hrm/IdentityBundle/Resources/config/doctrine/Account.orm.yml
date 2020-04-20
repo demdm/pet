@@ -1,16 +1,14 @@
-App\Hrm\Identity\Account\Model\Account:
+App\Hrm\Identity\Model\Account:
     type: entity
-    table: account
+    table: hrm_identity_account
     repositoryClass: App\Hrm\IdentityBundle\Repository\DoctrineAccountRepository
     uniqueConstraints:
-        uk_account_email:
+        uk__account__email:
             columns: [ email ]
     id:
         id:
             type: string
     fields:
-        profileId:
-            type: string
         email:
             type: string
             length: 180
@@ -24,11 +22,6 @@ App\Hrm\Identity\Account\Model\Account:
             type: datetime_immutable
     oneToOne:
         profile:
-            targetEntity: App\Hrm\Identity\Profile\Model\Profile
+            targetEntity: App\Hrm\Identity\Model\Profile
+            mappedBy: profile
             cascade: [ persist, remove ]
-            joinColumn:
-                name: profile_id
-                referencedColumnName: id
-                nullable: false
-                onDelete: CASCADE
-                onPersist: CASCADE

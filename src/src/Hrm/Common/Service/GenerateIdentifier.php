@@ -2,7 +2,7 @@
 
 namespace App\Hrm\Common\Service;
 
-interface GenerateIdentifierService
+interface GenerateIdentifier
 {
     public function generate(): string;
 }

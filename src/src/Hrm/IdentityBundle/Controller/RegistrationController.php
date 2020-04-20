@@ -2,29 +2,29 @@
 
 namespace App\Hrm\IdentityBundle\Controller;
 
-use App\Hrm\Common\Service\GenerateIdentifierService;
-use App\Hrm\Identity\Account\Facade\CreateFacade;
-use App\Hrm\Identity\Account\Facade\CreateFacadeRequest;
+use App\Hrm\Common\Service\GenerateIdentifier;
+use App\Hrm\Identity\Facade\Registration;
+use App\Hrm\Identity\Facade\RegistrationRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegistrationController
 {
     public function index(
-        CreateFacade $createAccountService,
-        GenerateIdentifierService $generateIdentifierService
+        Registration $registration,
+        GenerateIdentifier $generateIdentifier
     ): Response
     {
-        $userId = $generateIdentifierService->generate();
+        $userId = $generateIdentifier->generate();
 
-        $registrationRequest = new CreateFacadeRequest(
+        $registrationRequest = new RegistrationRequest(
             $userId,
             'Dima',
             'Demianov',
-            'd65950@gmail.com',
+            'd65950@gmail.com2',
             'qwerty'
         );
 
-        $createAccountService->handle($registrationRequest);
+        $registration->handle($registrationRequest);
 
         return new Response(
             'Registration have been done! User ID: ' . $userId .'.'

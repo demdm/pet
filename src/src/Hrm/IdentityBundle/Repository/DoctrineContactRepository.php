@@ -3,8 +3,8 @@
 namespace App\Hrm\IdentityBundle\Repository;
 
 use App\Hrm\Common\Repository\ExtendedObjectRepositoryTrait;
-use App\Hrm\Identity\Profile\Model\Contact;
-use App\Hrm\Identity\Profile\Repository\ContactRepository;
+use App\Hrm\Identity\Model\Contact;
+use App\Hrm\Identity\Repository\ContactRepository;
 use Doctrine\ORM\EntityRepository;
 
 /**

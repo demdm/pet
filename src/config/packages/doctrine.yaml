@@ -13,8 +13,8 @@ doctrine:
         auto_mapping: false
         default_entity_manager: default
         mappings:
-            AppHrmIdentity:
+            HrmIdentity:
                 type: yml
-                prefix: App\Hrm\Identity
+                prefix: App\Hrm\Identity\Model
                 dir: '%kernel.project_dir%/src/Hrm/IdentityBundle/Resources/config/doctrine'
                 is_bundle: false

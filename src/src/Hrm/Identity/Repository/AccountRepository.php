@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Hrm\Identity\Account\Repository;
+namespace App\Hrm\Identity\Repository;
 
 use App\Hrm\Common\Repository\ExtendedObjectRepository;
 use Doctrine\Common\Collections\Selectable;

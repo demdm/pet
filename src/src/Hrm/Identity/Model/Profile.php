@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Hrm\Identity\Profile\Model;
+namespace App\Hrm\Identity\Model;
 
-use App\Hrm\Identity\Account\Model\Account;
+use App\Hrm\Identity\Model\Account;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Webmozart\Assert\Assert;
@@ -27,6 +27,7 @@ final class Profile
     }
 
     public static function create(
+        Account $account,
         string $id,
         string $firstName,
         string $lastName
@@ -37,6 +38,7 @@ final class Profile
         Assert::lengthBetween($lastName, 1, 100);
 
         $self = new self();
+        $self->account = $account;
         $self->id = $id;
         $self->firstName = $firstName;
         $self->lastName = $lastName;

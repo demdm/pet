@@ -15,31 +15,31 @@ services:
 
     # Facade
 
-    App\Hrm\Identity\Account\Facade\CreateFacade: ~
+    App\Hrm\Identity\Facade\Registration: ~
 
 
     # Service
 
-    App\Hrm\IdentityBundle\Service\SymfonyHashPasswordService: ~
-    App\Hrm\Identity\Account\Service\HashPasswordService: '@App\Hrm\IdentityBundle\Service\SymfonyHashPasswordService'
+    App\Hrm\IdentityBundle\Service\SymfonyHashPassword: ~
+    App\Hrm\Identity\Service\HashPassword: '@App\Hrm\IdentityBundle\Service\SymfonyHashPassword'
     
 
     # Repository
 
-    App\Hrm\Identity\Account\Repository\AccountRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineAccountRepository'
+    App\Hrm\Identity\Repository\AccountRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineAccountRepository'
     App\Hrm\IdentityBundle\Repository\DoctrineAccountRepository:
         factory: ['@doctrine', getRepository]
         arguments:
-            - App\Hrm\Identity\Account\Model\Account
+            - App\Hrm\Identity\Model\Account
 
-    App\Hrm\Identity\Profile\Repository\ProfileRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineProfileRepository'
+    App\Hrm\Identity\Repository\ProfileRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineProfileRepository'
     App\Hrm\IdentityBundle\Repository\DoctrineProfileRepository:
         factory: ['@doctrine', getRepository]
         arguments:
-            - App\Hrm\Identity\Profile\Model\Profile
+            - App\Hrm\Identity\Model\Profile
 
-    App\Hrm\Identity\Profile\Repository\ContactRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineContactRepository'
+    App\Hrm\Identity\Repository\ContactRepository: '@App\Hrm\IdentityBundle\Repository\DoctrineContactRepository'
     App\Hrm\IdentityBundle\Repository\DoctrineContactRepository:
         factory: ['@doctrine', getRepository]
         arguments:
-            - App\Hrm\Identity\Profile\Model\Contact
+            - App\Hrm\Identity\Model\Contact

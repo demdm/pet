@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Hrm\Identity\Profile\Model;
+namespace App\Hrm\Identity\Model;
 
 use Webmozart\Assert\Assert;
 

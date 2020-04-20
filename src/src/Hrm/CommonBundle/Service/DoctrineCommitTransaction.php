@@ -2,10 +2,10 @@
 
 namespace App\Hrm\CommonBundle\Service;
 
-use App\Hrm\Common\Service\CommitTransactionService;
+use App\Hrm\Common\Service\CommitTransaction;
 use Doctrine\ORM\EntityManagerInterface;
 
-class DoctrineCommitTransactionService implements CommitTransactionService
+class DoctrineCommitTransaction implements CommitTransaction
 {
     private EntityManagerInterface $entityManager;
 

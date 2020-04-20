@@ -2,7 +2,7 @@
 
 namespace App\Hrm\Common\Service;
 
-interface CommitTransactionService
+interface CommitTransaction
 {
     public function commit(): void;
 }

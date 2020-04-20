@@ -3,8 +3,8 @@
 namespace App\Hrm\IdentityBundle\Repository;
 
 use App\Hrm\Common\Repository\ExtendedObjectRepositoryTrait;
-use App\Hrm\Identity\Account\Model\Account;
-use App\Hrm\Identity\Account\Repository\AccountRepository;
+use App\Hrm\Identity\Model\Account;
+use App\Hrm\Identity\Repository\AccountRepository;
 use Doctrine\ORM\EntityRepository;
 
 /**
