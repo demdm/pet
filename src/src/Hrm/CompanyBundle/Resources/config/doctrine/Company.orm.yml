@@ -27,3 +27,15 @@ App\Hrm\Company\Model\Company:
             targetEntity: App\Hrm\Company\Model\Office
             cascade: [ persist, remove ]
             mappedBy: company
+    manyToMany:
+        ownerList:
+            targetEntity: App\Hrm\Identity\Model\Account
+            inversedBy: ownedCompanyList
+            joinTable:
+                name: hrm_company_owner
+                joinColumns:
+                    account_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    company_id:
+                        referencedColumnName: id

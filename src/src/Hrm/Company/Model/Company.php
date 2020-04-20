@@ -15,19 +15,15 @@ final class Company
     private ?string $logoPath;
     private DateTimeImmutable $createdAt;
 
-    /**
-     * @var Account[]|ArrayCollection
-     */
-    private $ownedByList;
+    /** @var Account[]|ArrayCollection */
+    private $ownerList;
 
-    /**
-     * @var Office[]|ArrayCollection
-     */
+    /** @var Office[]|ArrayCollection */
     private $officeList;
 
     private function __construct()
     {
-        $this->ownedByList = new ArrayCollection();
+        $this->ownerList = new ArrayCollection();
         $this->officeList = new ArrayCollection();
     }
 
@@ -46,7 +42,7 @@ final class Company
         $self = new self();
         $self->id = $id;
         $self->name = $name;
-        $self->ownedByList->add($createdBy);
+        $self->ownerList->add($createdBy);
         $self->createdBy = $createdBy;
         $self->createdAt = $createdAt;
         $self->logoPath = $logoPath;

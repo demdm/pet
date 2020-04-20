@@ -2,7 +2,9 @@
 
 namespace App\Hrm\Identity\Model;
 
+use App\Hrm\Company\Model\Company;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Webmozart\Assert\Assert;
 
 final class Account
@@ -29,6 +31,9 @@ final class Account
     private array $roles;
     private DateTimeImmutable $createdAt;
     private Profile $profile;
+
+    /** @var Company[]|ArrayCollection */
+    private $ownedCompanyList;
 
     private function __construct()
     {
