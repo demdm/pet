@@ -23,7 +23,7 @@ App\Hrm\Identity\Model\Account:
     oneToOne:
         profile:
             targetEntity: App\Hrm\Identity\Model\Profile
-            mappedBy: profile
+            mappedBy: account
             cascade: [ persist, remove ]
     manyToMany:
         ownedCompanyList:

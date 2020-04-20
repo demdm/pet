@@ -36,10 +36,7 @@ final class RegistrationHandler
             $this->generateIdentifier->generate(),
             $command->email,
             $this->hashPassword->hash($command->password),
-            [
-                Account::ROLE_USER,
-                Account::ROLE_RECRUITER
-            ],
+            [Account::ROLE_USER],
             new DateTimeImmutable()
         );
 

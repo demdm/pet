@@ -12,6 +12,11 @@ services:
         resource: '../../Controller'
         tags: ['controller.service_arguments']
     
+    
+    # Command
+
+    App\Hrm\Company\Command\CreateCompanyHandler: ~
+
 
     # Repository
 
