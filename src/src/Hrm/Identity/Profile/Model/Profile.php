@@ -2,11 +2,10 @@
 
 namespace App\Hrm\Identity\Profile\Model;
 
-use App\Hrm\Common\Type\StringType;
-use App\Hrm\Common\Type\StringIdType;
 use App\Hrm\Identity\Account\Model\Account;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Webmozart\Assert\Assert;
 
 final class Profile
 {
@@ -28,25 +27,29 @@ final class Profile
     }
 
     public static function create(
-        StringIdType $id,
-        StringType $firstName,
-        StringType $lastName
+        string $id,
+        string $firstName,
+        string $lastName
     ): self
     {
+        Assert::uuid($id);
+        Assert::lengthBetween($firstName, 1, 50);
+        Assert::lengthBetween($lastName, 1, 100);
+
         $self = new self();
-        $self->id = $id->toString();
-        $self->firstName = $firstName->toString();
-        $self->lastName = $lastName->toString();
+        $self->id = $id;
+        $self->firstName = $firstName;
+        $self->lastName = $lastName;
 
         return $self;
     }
 
     public function addContact(
-        StringIdType $id,
-        ContactType $type,
-        StringType $value,
+        string $id,
+        string $type,
+        string $value,
         bool $isPublic = false,
-        ?StringType $description = null
+        ?string $description = null
     ): void
     {
         $contact = Contact::create(

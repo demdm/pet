@@ -2,11 +2,36 @@
 
 namespace App\Hrm\Identity\Profile\Model;
 
-use App\Hrm\Common\Type\StringIdType;
-use App\Hrm\Common\Type\StringType;
+use Webmozart\Assert\Assert;
 
 final class Contact
 {
+    const TYPE_PHONE = 'phone';
+    const TYPE_EMAIL = 'email';
+    const TYPE_LINKEDIN = 'linkedin';
+    const TYPE_FACEBOOK = 'facebook';
+    const TYPE_VK = 'vk';
+    const TYPE_INSTAGRAM = 'instagram';
+    const TYPE_ODNOKLASSNIKI = 'odnoklassniki';
+    const TYPE_TELEGRAM = 'telegram';
+    const TYPE_SKYPE = 'skype';
+    const TYPE_VIBER = 'viber';
+    const TYPE_WHATSUP = 'whats_up';
+
+    const TYPE_LIST = [
+        self::TYPE_PHONE,
+        self::TYPE_EMAIL,
+        self::TYPE_LINKEDIN,
+        self::TYPE_FACEBOOK,
+        self::TYPE_VK,
+        self::TYPE_INSTAGRAM,
+        self::TYPE_ODNOKLASSNIKI,
+        self::TYPE_TELEGRAM,
+        self::TYPE_SKYPE,
+        self::TYPE_VIBER,
+        self::TYPE_WHATSUP,
+    ];
+
     private string $id;
     private Profile $profile;
     private string $type;
@@ -15,26 +40,31 @@ final class Contact
     private ?string $description;
     private string $profileId;
 
-    final protected function __construct()
+    protected function __construct()
     {
     }
 
     public static function create(
-        StringIdType $id,
+        string $id,
         Profile $profile,
-        ContactType $type,
-        StringType $value,
+        string $type,
+        string $value,
         bool $isPublic = false,
-        ?StringType $description = null
+        ?string $description = null
     ): self
     {
+        Assert::uuid($id);
+        Assert::oneOf($type, self::TYPE_LIST);
+        Assert::lengthBetween($value, 1, 256);
+        Assert::nullOrLengthBetween($description, 1, 256);
+
         $self = new self();
-        $self->id = $id->toString();
+        $self->id = $id;
         $self->profile = $profile;
-        $self->type = $type->toString();
-        $self->value = $value->toString();
+        $self->type = $type;
+        $self->value = $value;
         $self->isPublic = $isPublic;
-        $self->description = null !== $description ? $description->toString() : null;
+        $self->description = $description;
 
         return $self;
     }

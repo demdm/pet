@@ -4,14 +4,10 @@ namespace App\Hrm\Identity\Account\Facade;
 
 use App\Hrm\Common\Service\CommitTransactionService;
 use App\Hrm\Common\Service\GenerateIdentifierService;
-use App\Hrm\Common\Type\EmailType;
-use App\Hrm\Common\Type\StringType;
-use App\Hrm\Common\Type\StringIdType;
 use App\Hrm\Identity\Account\Model\Account;
-use App\Hrm\Identity\Account\Model\AccountRole;
 use App\Hrm\Identity\Account\Repository\AccountRepository;
 use App\Hrm\Identity\Account\Service\HashPasswordService;
-use App\Hrm\Identity\Profile\Model\ContactType;
+use App\Hrm\Identity\Profile\Model\Contact;
 use App\Hrm\Identity\Profile\Model\Profile;
 use DateTimeImmutable;
 
@@ -37,23 +33,26 @@ final class CreateFacade
     public function handle(CreateFacadeRequest $request): void
     {
         $profile = Profile::create(
-            new StringIdType($this->generateIdentifierService->generate()),
-            new StringType($request->firstName),
-            new StringType($request->lastName)
+            $this->generateIdentifierService->generate(),
+            $request->firstName,
+            $request->lastName
         );
 
         $profile->addContact(
-            new StringIdType($this->generateIdentifierService->generate()),
-            new ContactType(ContactType::EMAIL),
-            new StringType($request->email)
+            $this->generateIdentifierService->generate(),
+            Contact::TYPE_EMAIL,
+            $request->email
         );
 
         $account = Account::create(
-            new StringIdType($this->generateIdentifierService->generate()),
+            $this->generateIdentifierService->generate(),
             $profile,
-            new EmailType($request->email),
-            new StringType($this->hashPasswordService->hash($request->password)),
-            AccountRole::setAll([AccountRole::USER, AccountRole::RECRUITER]),
+            $request->email,
+            $this->hashPasswordService->hash($request->password),
+            [
+                Account::ROLE_USER,
+                Account::ROLE_RECRUITER
+            ],
             new DateTimeImmutable()
         );
 
