@@ -3,28 +3,28 @@
 namespace App\Hrm\IdentityBundle\Controller;
 
 use App\Hrm\Common\Service\GenerateIdentifier;
-use App\Hrm\Identity\Facade\Registration;
-use App\Hrm\Identity\Facade\RegistrationRequest;
+use App\Hrm\Identity\Command\RegistrationHandler;
+use App\Hrm\Identity\Command\Registration;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegistrationController
 {
     public function index(
-        Registration $registration,
+        RegistrationHandler $registrationHandler,
         GenerateIdentifier $generateIdentifier
     ): Response
     {
         $userId = $generateIdentifier->generate();
 
-        $registrationRequest = new RegistrationRequest(
+        $registration = new Registration(
             $userId,
             'Dima',
             'Demianov',
-            'd65950@gmail.com2',
+            'd65950@gmail.com3',
             'qwerty'
         );
 
-        $registration->handle($registrationRequest);
+        $registrationHandler->handle($registration);
 
         return new Response(
             'Registration have been done! User ID: ' . $userId .'.'

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Hrm\Identity\Facade;
+namespace App\Hrm\Identity\Command;
 
-final class RegistrationRequest
+final class Registration
 {
     public string $uuid;
     public string $firstName;

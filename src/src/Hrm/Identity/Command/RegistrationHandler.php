@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Hrm\Identity\Facade;
+namespace App\Hrm\Identity\Command;
 
 use App\Hrm\Common\Service\CommitTransaction;
 use App\Hrm\Common\Service\GenerateIdentifier;
-use App\Hrm\Identity\Model\Account;
 use App\Hrm\Identity\Service\HashPassword;
+use App\Hrm\Identity\Model\Account;
 use App\Hrm\Identity\Model\Contact;
 use App\Hrm\Identity\Model\Profile;
 use App\Hrm\Identity\Repository\ProfileRepository;
 use DateTimeImmutable;
 
-final class Registration
+final class RegistrationHandler
 {
     private GenerateIdentifier $generateIdentifier;
     private CommitTransaction $commitTransaction;
@@ -30,12 +30,12 @@ final class Registration
         $this->profileRepository = $profileRepository;
     }
 
-    public function handle(RegistrationRequest $request): void
+    public function handle(Registration $command): void
     {
         $account = Account::create(
             $this->generateIdentifier->generate(),
-            $request->email,
-            $this->hashPassword->hash($request->password),
+            $command->email,
+            $this->hashPassword->hash($command->password),
             [
                 Account::ROLE_USER,
                 Account::ROLE_RECRUITER
@@ -46,14 +46,14 @@ final class Registration
         $profile = Profile::create(
             $account,
             $this->generateIdentifier->generate(),
-            $request->firstName,
-            $request->lastName
+            $command->firstName,
+            $command->lastName
         );
 
         $profile->addContact(
             $this->generateIdentifier->generate(),
             Contact::TYPE_EMAIL,
-            $request->email
+            $command->email
         );
 
         $this->profileRepository->add($profile);
