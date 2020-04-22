@@ -41,6 +41,7 @@ services:
       - ./nginx/sites/:/etc/nginx/sites-available
       - ./nginx/conf.d/:/etc/nginx/conf.d
       - ./logs:/var/log
+      - ./logs/nginx/error.log:/var/log/nginx/error.log
     depends_on:
       - php-fpm
     ports:
