@@ -14,8 +14,7 @@ class RegistrationController
         GenerateIdentifier $generateIdentifier
     ): Response
     {
-        // $userId = $generateIdentifier->generate();
-        $userId = '4e9a88c0-7e67-42c7-8897-a5b74f5b10ac';
+        $userId = $generateIdentifier->generate();
 
         $registration = new Registration(
             $userId,

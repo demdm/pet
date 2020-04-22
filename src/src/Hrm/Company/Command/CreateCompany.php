@@ -16,7 +16,7 @@ class CreateCompany
         string $creatorId,
         string $id,
         string $name,
-        ?string $address,
+        ?string $address = null,
         ?UploadedFile $logoFile = null
     ) {
         $this->creatorId = $creatorId;

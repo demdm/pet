@@ -127,4 +127,12 @@ final class Company
 
         $this->departmentList->add($position);
     }
+
+    /**
+     * @return Account[]
+     */
+    public function getOwnerList(): array
+    {
+        return $this->ownerList->toArray();
+    }
 }

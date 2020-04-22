@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use InvalidArgumentException;
 use Webmozart\Assert\Assert;
 
-final class Account
+class Account
 {
     const ROLE_ADMINISTRATOR = 'administrator';
     const ROLE_COMPANY_OWNER = 'company_owner';
@@ -90,5 +90,15 @@ final class Account
         foreach ($roles as $role) {
             $this->addRole($role);
         }
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
     }
 }

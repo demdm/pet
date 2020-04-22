@@ -13,6 +13,14 @@ services:
         tags: ['controller.service_arguments']
 
 
+    # Fixture
+
+    App\Hrm\IdentityBundle\DataFixtures\:
+        autowire: true
+        resource: '../../DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
+
     # Command
 
     App\Hrm\Identity\Command\RegistrationHandler: ~

@@ -11,8 +11,16 @@ services:
         autowire: true
         resource: '../../Controller'
         tags: ['controller.service_arguments']
-    
-    
+
+
+    # Fixture
+
+    App\Hrm\CompanyBundle\DataFixtures\:
+        autowire: true
+        resource: '../../DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
+
     # Command
 
     App\Hrm\Company\Command\CreateCompanyHandler: ~
