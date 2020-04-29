@@ -4,23 +4,9 @@ namespace App\Hrm\Identity\Command;
 
 final class Registration
 {
-    public string $uuid;
-    public string $firstName;
-    public string $lastName;
-    public string $email;
-    public string $password;
-
-    public function __construct(
-        string $uuid,
-        string $firstName,
-        string $lastName,
-        string $email,
-        string $password
-    ) {
-        $this->uuid = $uuid;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->email = $email;
-        $this->password = $password;
-    }
+    public ?string $uuid = null;
+    public ?string $firstName = null;
+    public ?string $lastName = null;
+    public ?string $email = null;
+    public ?string $password = null;
 }

@@ -1,5 +1,5 @@
 app_hrm_identity_registration_index:
     path:       /register
     defaults:   { _controller: App\Hrm\IdentityBundle\Controller\RegistrationController::index }
-    methods:    [GET]
+    methods:    [GET, POST]
 

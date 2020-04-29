@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use InvalidArgumentException;
 use Webmozart\Assert\Assert;
 
-class Account
+final class Account
 {
     const ROLE_ADMINISTRATOR = 'administrator';
     const ROLE_COMPANY_OWNER = 'company_owner';

@@ -1,0 +1,16 @@
+App\Hrm\Identity\Command\Registration:
+    properties:
+        firstName:
+            - Length:
+                min: 1
+                max: 50
+        lastName:
+            - Length:
+                min: 1
+                max: 100
+        email:
+            - Email: ~
+        password:
+            - Length:
+                min: 6
+                max: 255
