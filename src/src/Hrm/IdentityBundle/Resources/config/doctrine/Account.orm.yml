@@ -15,7 +15,7 @@ App\Hrm\Identity\Model\Account:
             unique: true
         passwordHash:
             type: string
-            length: 256
+            length: 255
         roles:
             type: simple_array
         createdAt:

@@ -51,7 +51,7 @@ final class Account
     {
         Assert::uuid($id);
         Assert::email($email);
-        Assert::lengthBetween($passwordHash, 1, 256);
+        Assert::lengthBetween($passwordHash, 1, 255);
 
         $self = new self();
         $self->id = $id;

@@ -24,7 +24,7 @@ final class Office
     ): self
     {
         Assert::uuid($id);
-        Assert::lengthBetween($address, 1, 256);
+        Assert::lengthBetween($address, 1, 255);
 
         $self = new self();
         $self->id = $id;

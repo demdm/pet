@@ -11,3 +11,11 @@ services:
     
     App\Hrm\CommonBundle\Service\DoctrineCommitTransaction: ~
     App\Hrm\Common\Service\CommitTransaction: '@App\Hrm\CommonBundle\Service\DoctrineCommitTransaction'
+
+
+    # Validator
+
+    App\Hrm\CommonBundle\Validator\Constraints\:
+        resource: '../../../CommonBundle/Validator/Constraints/'
+        tags:
+            - { name: validator.constraint_validator}

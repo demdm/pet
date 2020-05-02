@@ -1,8 +1,10 @@
 REGISTRATION:
+    TITLE:
+        REGISTRATION: Регистрация
     LABEL:
-        FIRST_NAME: 'Имя'
-        LAST_NAME: 'Фамилия'
-        EMAIL: 'Email'
-        PASSWORD: 'Пароль'
+        FIRST_NAME: Имя
+        LAST_NAME: Фамилия
+        EMAIL: Email
+        PASSWORD: Пароль
     BUTTON:
-        SIGN_UP: 'Зарегистрироваться'
+        SIGN_UP: Зарегистрироваться

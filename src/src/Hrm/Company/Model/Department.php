@@ -27,8 +27,8 @@ final class Department
     ): self
     {
         Assert::uuid($id);
-        Assert::lengthBetween($name, 1, 256);
-        Assert::nullOrLengthBetween($description, 1, 256);
+        Assert::lengthBetween($name, 1, 255);
+        Assert::nullOrLengthBetween($description, 1, 255);
 
         $self = new self();
         $self->id = $id;

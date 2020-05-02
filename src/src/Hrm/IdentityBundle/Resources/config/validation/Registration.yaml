@@ -1,4 +1,8 @@
 App\Hrm\Identity\Command\Registration:
+    constraints:
+        - App\Hrm\CommonBundle\Validator\Constraints\UniqueModel:
+            entityClass: App\Hrm\Identity\Model\Account
+            fields: [ email ]
     properties:
         firstName:
             - Length:
@@ -10,6 +14,9 @@ App\Hrm\Identity\Command\Registration:
                 max: 100
         email:
             - Email: ~
+            - Length:
+                min: 1
+                max: 255
         password:
             - Length:
                 min: 6

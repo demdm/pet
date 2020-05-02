@@ -28,11 +28,11 @@ App\Hrm\Identity\Model\Profile:
             nullable: true
         photoPath:
             type: string
-            length: 256
+            length: 255
             nullable: true
         address:
             type: string
-            length: 256
+            length: 255
             nullable: true
         birthDate:
             type: datetime

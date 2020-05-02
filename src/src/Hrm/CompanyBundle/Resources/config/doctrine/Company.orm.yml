@@ -10,7 +10,7 @@ App\Hrm\Company\Model\Company:
             type: string
         logoPath:
             type: string
-            length: 256
+            length: 255
             nullable: true
         createdAt:
             type: datetime_immutable

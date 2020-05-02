@@ -48,8 +48,8 @@ final class Company
     ): self
     {
         Assert::uuid($id);
-        Assert::lengthBetween($name, 1, 256);
-        Assert::nullOrLengthBetween($logoPath, 1, 256);
+        Assert::lengthBetween($name, 1, 255);
+        Assert::nullOrLengthBetween($logoPath, 1, 255);
 
         $self = new self();
         $self->id = $id;

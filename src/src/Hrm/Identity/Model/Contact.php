@@ -55,8 +55,8 @@ final class Contact
     {
         Assert::uuid($id);
         Assert::oneOf($type, self::TYPE_LIST);
-        Assert::lengthBetween($value, 1, 256);
-        Assert::nullOrLengthBetween($description, 1, 256);
+        Assert::lengthBetween($value, 1, 255);
+        Assert::nullOrLengthBetween($description, 1, 255);
 
         $self = new self();
         $self->id = $id;

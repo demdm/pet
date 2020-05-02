@@ -22,7 +22,8 @@ class RegistrationController extends AbstractController
 
         $form = $this->createForm(
             RegistrationType::class,
-            $registration
+            $registration,
+            ['attr' => ['class' => 'form-signin']]
         );
 
         $form->handleRequest($request);
@@ -34,9 +35,7 @@ class RegistrationController extends AbstractController
 
         return $this->render(
             '@HrmIdentity/registration/index.html.twig',
-            [
-                'form' => $form->createView(),
-            ]
+            ['form' => $form->createView()]
         );
     }
 }
