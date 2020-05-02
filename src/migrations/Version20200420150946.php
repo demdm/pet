@@ -26,7 +26,7 @@ final class Version20200420150946 extends AbstractMigration
           id VARCHAR(255) NOT NULL, 
           created_by VARCHAR(255) NOT NULL, 
           name VARCHAR(255) NOT NULL, 
-          logo_path VARCHAR(256) DEFAULT NULL, 
+          logo_path VARCHAR(255) DEFAULT NULL, 
           created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', 
           UNIQUE INDEX UNIQ_80D5C29CDE12AB56 (created_by), 
           PRIMARY KEY(id)

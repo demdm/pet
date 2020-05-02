@@ -61,7 +61,7 @@ class CreateCompanyHandler
 
         $this->companyRepository->add($company);
 
-        $creator->makeCompanyOwner($company);
+        $creator->appointAsCompanyOwner($company);
 
         $this->commitTransaction->commit();
     }

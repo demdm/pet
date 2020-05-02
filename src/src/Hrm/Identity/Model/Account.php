@@ -3,9 +3,9 @@
 namespace App\Hrm\Identity\Model;
 
 use App\Hrm\Company\Model\Company;
+use BadMethodCallException;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
-use InvalidArgumentException;
 use Webmozart\Assert\Assert;
 
 final class Account
@@ -57,13 +57,13 @@ final class Account
         $self->id = $id;
         $self->email = $email;
         $self->passwordHash = $passwordHash;
-        $self->addRoles($roles);
+        $self->setRoles($roles);
         $self->createdAt = $createdAt;
 
         return $self;
     }
 
-    public function makeCompanyOwner(Company $company): void
+    public function appointAsCompanyOwner(Company $company): void
     {
         $this->ownedCompanyList->add($company);
 
@@ -77,7 +77,7 @@ final class Account
         Assert::oneOf($role, self::ROLE_LIST);
 
         if ($role === self::ROLE_COMPANY_OWNER) {
-            throw new InvalidArgumentException('Use "makeOwner" method.');
+            throw new BadMethodCallException('Use "appointAsCompanyOwner" method.');
         }
 
         if (!in_array($role, $this->roles)) {
@@ -85,7 +85,7 @@ final class Account
         }
     }
 
-    public function addRoles(array $roles)
+    public function setRoles(array $roles)
     {
         foreach ($roles as $role) {
             $this->addRole($role);
