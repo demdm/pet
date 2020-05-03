@@ -4,26 +4,22 @@ services:
         autowire: true
         autoconfigure: true
 
-
     # Controller
-
     App\Hrm\IdentityBundle\Controller\:
         autowire: true
         resource: '../../Controller'
         tags: ['controller.service_arguments']
 
-
     # Fixture
-
     App\Hrm\IdentityBundle\DataFixtures\:
         autowire: true
         resource: '../../DataFixtures'
         tags: ['doctrine.fixture.orm']
 
-
-    # Command
-
-    App\Hrm\Identity\Command\RegistrationHandler: ~
+    # Message Handler
+    App\Hrm\Identity\MessageHandler\:
+        resource: '%kernel.project_dir%/src/Hrm/Identity/MessageHandler'
+        tags: ['messenger.message_handler']
 
 
     # Service

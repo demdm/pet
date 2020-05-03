@@ -1,4 +1,4 @@
-App\Hrm\Identity\Command\Registration:
+App\Hrm\Identity\Message\Registration:
     constraints:
         - App\Hrm\CommonBundle\Validator\Constraints\UniqueModel:
             entityClass: App\Hrm\Identity\Model\Account

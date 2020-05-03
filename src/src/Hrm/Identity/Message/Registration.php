@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Hrm\Identity\Command;
+namespace App\Hrm\Identity\Message;
 
 final class Registration
 {

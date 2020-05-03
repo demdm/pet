@@ -3,18 +3,18 @@
 namespace App\Hrm\IdentityBundle\Controller;
 
 use App\Hrm\Common\Service\GenerateIdentifier;
-use App\Hrm\Identity\Command\RegistrationHandler;
-use App\Hrm\Identity\Command\Registration;
+use App\Hrm\Identity\Message\Registration;
 use App\Hrm\IdentityBundle\Form\Type\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 
-class RegistrationController extends AbstractController
+final class RegistrationController extends AbstractController
 {
     public function index(
         Request $request,
-        RegistrationHandler $registrationHandler,
+        MessageBusInterface $messageBus,
         GenerateIdentifier $generateIdentifier
     ): Response
     {
@@ -30,7 +30,8 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $registration->uuid = $generateIdentifier->generate();
-            $registrationHandler->handle($registration);
+
+            $messageBus->dispatch($registration);
         }
 
         return $this->render(

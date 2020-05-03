@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Hrm\Identity\Command;
+namespace App\Hrm\Identity\MessageHandler;
 
 use App\Hrm\Common\Service\CommitTransaction;
 use App\Hrm\Common\Service\GenerateIdentifier;
+use App\Hrm\Identity\Message\Registration;
 use App\Hrm\Identity\Service\HashPassword;
 use App\Hrm\Identity\Model\Account;
 use App\Hrm\Identity\Model\Contact;
 use App\Hrm\Identity\Model\Profile;
 use App\Hrm\Identity\Repository\ProfileRepository;
 use DateTimeImmutable;
+//use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 final class RegistrationHandler
 {
@@ -30,12 +32,12 @@ final class RegistrationHandler
         $this->profileRepository = $profileRepository;
     }
 
-    public function handle(Registration $command): void
+    public function __invoke(Registration $message): void
     {
         $account = Account::create(
-            $command->uuid,
-            $command->email,
-            $this->hashPassword->hash($command->password),
+            $message->uuid,
+            $message->email,
+            $this->hashPassword->hash($message->password),
             [Account::ROLE_USER],
             new DateTimeImmutable()
         );
@@ -43,14 +45,14 @@ final class RegistrationHandler
         $profile = Profile::create(
             $account,
             $this->generateIdentifier->generate(),
-            $command->firstName,
-            $command->lastName
+            $message->firstName,
+            $message->lastName
         );
 
         $profile->addContact(
             $this->generateIdentifier->generate(),
             Contact::TYPE_EMAIL,
-            $command->email
+            $message->email
         );
 
         $this->profileRepository->add($profile);

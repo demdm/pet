@@ -3,8 +3,8 @@
 namespace App\Hrm\IdentityBundle\DataFixtures;
 
 use App\Hrm\Common\Service\GenerateIdentifier;
-use App\Hrm\Identity\Command\Registration;
-use App\Hrm\Identity\Command\RegistrationHandler;
+use App\Hrm\Identity\Message\Registration;
+use App\Hrm\Identity\MessageHandler\RegistrationHandler;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -12,7 +12,7 @@ use Faker\Generator;
 
 class AccountFixtures extends Fixture
 {
-    private RegistrationHandler $registrationHandler;
+    private RegistrationHandler $registrationMessageHandler;
     private GenerateIdentifier $generateIdentifier;
     private Generator $faker;
 
@@ -20,7 +20,7 @@ class AccountFixtures extends Fixture
         RegistrationHandler $registrationHandler,
         GenerateIdentifier $generateIdentifier
     ) {
-        $this->registrationHandler = $registrationHandler;
+        $this->registrationMessageHandler = $registrationHandler;
         $this->generateIdentifier = $generateIdentifier;
         $this->faker = Factory::create();
     }
@@ -36,15 +36,14 @@ class AccountFixtures extends Fixture
                 $password = $this->faker->password;
             }
 
-            $command = new Registration(
-                $this->generateIdentifier->generate(),
-                $this->faker->firstName,
-                $this->faker->lastName,
-                $email,
-                $password
-            );
+            $message = new Registration();
+            $message->uuid = $this->generateIdentifier->generate();
+            $message->firstName = $this->faker->firstName;
+            $message->lastName = $this->faker->lastName;
+            $message->email = $email;
+            $message->password = $password;
 
-            $this->registrationHandler->handle($command);
+            $this->registrationMessageHandler->__invoke($message);
         }
     }
 }
