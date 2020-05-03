@@ -8,13 +8,11 @@ use App\Hrm\IdentityBundle\Form\Type\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Messenger\MessageBusInterface;
 
 final class RegistrationController extends AbstractController
 {
     public function index(
         Request $request,
-        MessageBusInterface $messageBus,
         GenerateIdentifier $generateIdentifier
     ): Response
     {
@@ -31,7 +29,7 @@ final class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $registration->uuid = $generateIdentifier->generate();
 
-            $messageBus->dispatch($registration);
+            $this->dispatchMessage($registration);
         }
 
         return $this->render(

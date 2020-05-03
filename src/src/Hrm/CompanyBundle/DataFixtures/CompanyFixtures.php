@@ -3,8 +3,8 @@
 namespace App\Hrm\CompanyBundle\DataFixtures;
 
 use App\Hrm\Common\Service\GenerateIdentifier;
-use App\Hrm\Company\Command\CreateCompany;
-use App\Hrm\Company\Command\CreateCompanyHandler;
+use App\Hrm\Company\Message\CreateCompany;
+use App\Hrm\Company\MessageHandler\CreateCompanyHandler;
 use App\Hrm\Identity\Model\Account;
 use App\Hrm\Identity\Repository\AccountRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -51,7 +51,7 @@ class CompanyFixtures extends Fixture
                 continue;
             }
 
-            $command = new CreateCompany(
+            $message = new CreateCompany(
                 $accountList[$i]->getId(),
                 $this->generateIdentifier->generate(),
                 $this->faker->company,
@@ -59,7 +59,7 @@ class CompanyFixtures extends Fixture
                 null
             );
 
-            $this->createCompanyHandler->handle($command);
+            $this->createCompanyHandler->__invoke($message);
         }
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Hrm\Identity\MessageHandler;
 
-use App\Hrm\Common\Service\CommitTransaction;
 use App\Hrm\Common\Service\GenerateIdentifier;
 use App\Hrm\Identity\Message\Registration;
 use App\Hrm\Identity\Service\HashPassword;
@@ -11,23 +10,19 @@ use App\Hrm\Identity\Model\Contact;
 use App\Hrm\Identity\Model\Profile;
 use App\Hrm\Identity\Repository\ProfileRepository;
 use DateTimeImmutable;
-//use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 final class RegistrationHandler
 {
     private GenerateIdentifier $generateIdentifier;
-    private CommitTransaction $commitTransaction;
     private HashPassword $hashPassword;
     private ProfileRepository $profileRepository;
 
     public function __construct(
         GenerateIdentifier $generateIdentifier,
-        CommitTransaction $commitTransaction,
         HashPassword $hashPassword,
         ProfileRepository $profileRepository
     ) {
         $this->generateIdentifier = $generateIdentifier;
-        $this->commitTransaction = $commitTransaction;
         $this->hashPassword = $hashPassword;
         $this->profileRepository = $profileRepository;
     }
@@ -56,7 +51,5 @@ final class RegistrationHandler
         );
 
         $this->profileRepository->add($profile);
-
-        $this->commitTransaction->commit();
     }
 }

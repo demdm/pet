@@ -1,42 +1,39 @@
 <?php
 
-namespace App\Hrm\Company\Command;
+namespace App\Hrm\Company\MessageHandler;
 
-use App\Hrm\Common\Service\CommitTransaction;
 use App\Hrm\Common\Service\GenerateIdentifier;
+use App\Hrm\Company\Message\CreateCompany;
 use App\Hrm\Company\Model\Company;
 use App\Hrm\Company\Repository\CompanyRepository;
-use App\Hrm\Identity\Model\Account;
 use App\Hrm\Identity\Repository\AccountRepository;
 use DateTimeImmutable;
 
 class CreateCompanyHandler
 {
     private GenerateIdentifier $generateIdentifier;
-    private CommitTransaction $commitTransaction;
     private AccountRepository $accountRepository;
     private CompanyRepository $companyRepository;
 
     public function __construct(
         GenerateIdentifier $generateIdentifier,
-        CommitTransaction $commitTransaction,
         AccountRepository $accountRepository,
         CompanyRepository $companyRepository
     ) {
         $this->generateIdentifier = $generateIdentifier;
-        $this->commitTransaction = $commitTransaction;
         $this->accountRepository = $accountRepository;
         $this->companyRepository = $companyRepository;
     }
 
     /**
+     * @todo Wrap into a transaction
+     *
      * @param CreateCompany $command
      * @throws
      */
-    public function handle(CreateCompany $command): void
+    public function __invoke(CreateCompany $command): void
     {
-        /** @var Account $creator */
-        $creator = $this->accountRepository->get($command->creatorId);
+        $creatorAccount = $this->accountRepository->get($command->creatorAccountId);
 
         $nowDateTime = new DateTimeImmutable();
 
@@ -46,7 +43,7 @@ class CreateCompanyHandler
         $company = Company::create(
             $command->id,
             $command->name,
-            $creator,
+            $creatorAccount,
             $nowDateTime,
             $logoPath
         );
@@ -61,8 +58,6 @@ class CreateCompanyHandler
 
         $this->companyRepository->add($company);
 
-        $creator->appointAsCompanyOwner($company);
-
-        $this->commitTransaction->commit();
+        $creatorAccount->appointAsCompanyOwner($company);
     }
 }

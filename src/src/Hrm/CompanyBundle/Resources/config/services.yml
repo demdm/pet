@@ -4,26 +4,22 @@ services:
         autowire: true
         autoconfigure: true
 
-
     # Controller
-
     App\Hrm\CompanyBundle\Controller\:
         autowire: true
         resource: '../../Controller'
         tags: ['controller.service_arguments']
 
-
     # Fixture
-
     App\Hrm\CompanyBundle\DataFixtures\:
         autowire: true
         resource: '../../DataFixtures'
         tags: ['doctrine.fixture.orm']
 
-
-    # Command
-
-    App\Hrm\Company\Command\CreateCompanyHandler: ~
+    # Message Handler
+    App\Hrm\Company\MessageHandler\:
+        resource: '%kernel.project_dir%/src/Hrm/Company/MessageHandler'
+        tags: ['messenger.message_handler']
 
 
     # Repository
