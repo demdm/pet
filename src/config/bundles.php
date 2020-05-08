@@ -13,4 +13,5 @@ return [
     App\Hrm\CommonBundle\HrmCommonBundle::class => ['all' => true],
     App\Hrm\IdentityBundle\HrmIdentityBundle::class => ['all' => true],
     App\Hrm\CompanyBundle\HrmCompanyBundle::class => ['all' => true],
+    App\Hrm\DashboardBundle\HrmDashboardBundle::class => ['all' => true],
 ];

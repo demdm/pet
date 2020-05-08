@@ -1,0 +1,11 @@
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Controller
+    App\Hrm\DashboardBundle\Controller\:
+        autowire: true
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']

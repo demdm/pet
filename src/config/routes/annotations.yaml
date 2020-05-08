@@ -5,3 +5,7 @@ app_hrm_identity:
 app_hrm_company:
     resource: '@HrmCompanyBundle/Resources/config/routing.yml'
     prefix: /company
+
+app_dashboard_company:
+    resource: '@HrmDashboardBundle/Resources/config/routing.yml'
+    prefix: /dash
