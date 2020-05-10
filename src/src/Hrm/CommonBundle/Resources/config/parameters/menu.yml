@@ -1,0 +1,339 @@
+parameters:
+    # icons https://themes-pixeden.com/font-demos/7-stroke/
+    menu:
+        -
+            name: Home
+            icon: home
+            items:
+                -
+                    name: Dashboard
+                    link: index.php
+                    icon: monitor
+                    items: ~
+                -
+                    name: UI Elements
+                    link: ui-elements.php
+                    icon: diamond
+                    items:
+                        -
+                            name: General
+                            link: ui-general.php
+                        -
+                            name: Cards
+                            link: ui-cards.php
+                        -
+                            name: Buttons
+                            link: ui-buttons.php
+                        -
+                            name: Typography
+                            link: ui-typography.php
+                        -
+                            name: Grid
+                            link: ui-grid.php
+                -
+                    name: Components
+                    link: ui-elements.php
+                    icon: diamond
+                    items:
+                        -
+                            name: Alerts
+                            link: ui-alerts.php
+                        -
+                            name: Icons
+                            link: ui-icons.php
+                        -
+                            name: 'Tabs &amp; Accordions'
+                            link: ui-tabs-accordions.php
+                -
+                    name: Plugins
+                    link: plugins.php
+                    icon: plugin
+                    items:
+                        -
+                            name: Modals
+                            link: ui-modals.php
+                        -
+                            name: Nestable Lists
+                            link: ui-nestable-lists.php
+                        -
+                            name: Notifications
+                            link: ui-notifications.php
+                        -
+                            name: Sweet Alerts2
+                            link: ui-sweetalert2.php
+                -
+                    name: Documentation
+                    link: documentation.php
+                    icon: notebook
+                    items: ~
+        -
+            name: Forms
+            icon: rocket
+            items:
+                -
+                    name: Elements
+                    link: form-elements.php
+                    icon: ~
+                    items: ~
+                -
+                    name: Validation
+                    link: form-validation.php
+                    icon: ~
+                    items: ~
+                -
+                    name: Masks
+                    link: form-masks.php
+                    icon: ~
+                    items: ~
+                -
+                    name: Multiselect
+                    link: form-multiselect.php
+                    icon: ~
+                    items: ~
+                -
+                    name: Wizard
+                    link: form-wizard.php
+                    icon: ~
+                    items: ~
+                -
+                    name: Upload
+                    link: form-upload.php
+                    icon: ~
+                    items: ~
+        -
+            name: Tables
+            icon: diamond
+            items:
+                -
+                    name: General
+                    link: tables-general.php
+                    icon: box2
+                    items: ~
+                -
+                    name: Data Tables
+                    link: tables-datatables.php
+                    icon: box2
+                    items: ~
+                -
+                    name: Filters
+                    link: tables-filters.php
+                    icon: box2
+                    items: ~
+        -
+            name: Pages
+            icon: portfolio
+            items:
+                -
+                    name: Profile
+                    link: pages-profile.php
+                    icon: user
+                    items: ~
+                -
+                    name: Pricing
+                    link: pages-pricing-tables.php
+                    icon: cash
+                    items: ~
+                -
+                    name: Invoice
+                    link: pages-invoice.php
+                    icon: wallet
+                    items: ~
+                -
+                    name: Login
+                    link: pages-profile.php
+                    icon: diamond
+                    items:
+                        -
+                            name: Login
+                            link: pages-login.php
+                        -
+                            name: Sign Up
+                            link: pages-sign-up.php
+                        -
+                            name: Forgot Password
+                            link: pages-forgot-password.php
+                -
+                    name: Mail
+                    link: pages-pricing-tables.php
+                    icon: mail
+                    items:
+                        -
+                            name: Inbox
+                            link: email-inbox.php
+                        -
+                            name: Detail
+                            link: email-detail.php
+                        -
+                            name: Compose
+                            link: email-compose.php
+                -
+                    name: Maps
+                    link: pages-invoice.php
+                    icon: map-marker
+                    items:
+                        -
+                            name: Google Maps
+                            link: maps-google.php
+                        -
+                            name: Vector Maps
+                            link: maps-vector.php
+                -
+                    name: Extra Pages
+                    link: pages-invoice.php
+                    icon: diamond
+                    items:
+                        -
+                            name: Blank Page
+                            link: pages-blank.php
+                        -
+                            name: Blank Page Header
+                            link: pages-blank-header.php
+                        -
+                            name: 404 Page
+                            link: pages-404.php
+                        -
+                            name: Gallery
+                            link: pages-gallery.php
+                        -
+                            name: Calendar
+                            link: pages-calendar.php
+                        -
+                            name: Timeline
+                            link: pages-timeline.php
+                        -
+                            name: Timeline v2
+                            link: pages-timeline2.php
+        -
+            name: Charts
+            icon: display1
+            items:
+                -
+                    name: Flot
+                    link: charts-flot.php
+                    icon: graph
+                    items: ~
+                -
+                    name: Sparklines
+                    link: charts-sparklines.php
+                    icon: graph1
+                    items: ~
+                -
+                    name: Morris.js
+                    link: charts-morris.php
+                    icon: graph3
+                    items: ~
+                -
+                    name: Chart.js
+                    link: charts-chartjs.php
+                    icon: graph2
+                    items: ~
+        -
+            name: Layouts
+            icon: tools
+            items:
+                -
+                    name: Mega Menu
+                    link: mega-menu.php
+                    icon: ribbon
+                    mega_menu_item: ~
+                    items:
+                        -
+                            name: Forms
+                            link: ~
+                            icon: note2
+                            items:
+                                -
+                                    name: Elements
+                                    link: form-elements.php
+                                -
+                                    name: Validation
+                                    link: form-validation.php
+                                -
+                                    name: Input Masks
+                                    link: form-masks.php
+                                -
+                                    name: X Editable
+                                    link: form-xeditable.php
+                                -
+                                    name: Multiselect
+                                    link: form-multiselect.php
+                                -
+                                    name: Wizard
+                                    link: form-wizard.php
+                                -
+                                    name: Multi Upload
+                                    link: form-upload.php
+                        -
+                            name: Tables
+                            link: ~
+                            icon: keypad
+                            items:
+                                -
+                                    name: General
+                                    link: tables-general.php
+                                -
+                                    name: Datatables
+                                    link: tables-datatables.php
+                        -
+                            name: Pages
+                            link: ~
+                            icon: bookmarks
+                            items:
+                                -
+                                    name: Login
+                                    link: pages-login.php
+                                -
+                                    name: Sign Up
+                                    link: pages-sign-up.php
+                                -
+                                    name: Forgot Password
+                                    link: pages-forgot-password.php
+                                -
+                                    name: Blank Page
+                                    link: pages-blank.php
+                                -
+                                    name: Calendar
+                                    link: pages-calendar.php
+                                -
+                                    name: Gallery
+                                    link: pages-gallery.php
+                                -
+                                    name: Pricing Tables
+                                    link: pages-pricing-tables.php
+                                -
+                                    name: Invoice
+                                    link: pages-invoice.php
+                                -
+                                    name: Profile
+                                    link: pages-profile.php
+                                -
+                                    name: 404 Page
+                                    link: pages-404.php
+                        -
+                            -
+                                name: Maps
+                                link: ~
+                                icon: map
+                                items:
+                                    -
+                                        name: Google Maps
+                                        link: maps-google.php
+                                    -
+                                        name: Vector Maps
+                                        link: maps-vector.php
+                            -
+                                name: Mail
+                                link: ~
+                                icon: mail
+                                items:
+                                    -   name: Inbox
+                                        link: email-inbox.php
+                                    -   name: Detail
+                                        link: email-detail.php
+                                    -   name: Compose
+                                        link: email-compose.php
+                -
+                    name: Logo Mobile
+                    link: layout-logo-mobile.php
+                    icon: leaf
+                    items: ~

@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg mai-sub-header">
+    <div class="container">
+        <nav class="navbar navbar-expand-md">
+
+            {# mobile burger icon #}
+            <button class="navbar-toggler hidden-md-up collapsed"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#mai-navbar-collapse"
+                    aria-controls="mai-navbar-collapse"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icon-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+
+            <div class="navbar-collapse collapse mai-nav-tabs" id="mai-navbar-collapse">
+                {% include '@HrmCommon/inner/menu/top_sub_header_menu/top_sub_header_menu.html.twig' %}
+            </div>
+        </nav>
+        <div class="search">
+            <input type="text" placeholder="Search..." name="q">
+            <span class="s7-search"></span>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,12 @@
+<div class="mai-mega-menu-section parent">
+    {% include '@HrmCommon/inner/menu/top_sub_header_menu/nav_link.html.twig' with item %}
+    {% if item.items is not empty %}
+        <div class="mai-mega-menu-sub-items mai-sub-nav">
+            {% for sub_item in item.items %}
+                {% include '@HrmCommon/inner/menu/top_sub_header_menu/dropdown_item.html.twig' with {
+                    'item': sub_item
+                } %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

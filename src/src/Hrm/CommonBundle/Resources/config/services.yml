@@ -16,6 +16,6 @@ services:
     # Validator
 
     App\Hrm\CommonBundle\Validator\Constraints\:
-        resource: '../../../CommonBundle/Validator/Constraints/'
+        resource: '../../Validator/Constraints/'
         tags:
             - { name: validator.constraint_validator}
