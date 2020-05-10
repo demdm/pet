@@ -8,7 +8,7 @@ App\Hrm\Company\Model\Company:
     fields:
         name:
             type: string
-        logoPath:
+        logoName:
             type: string
             length: 255
             nullable: true

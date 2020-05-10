@@ -6,6 +6,7 @@ use App\Hrm\Common\Service\GenerateIdentifier;
 use App\Hrm\Company\Message\CreateCompany;
 use App\Hrm\Company\Model\Company;
 use App\Hrm\Company\Repository\CompanyRepository;
+use App\Hrm\Company\Service\LogoFileSystem;
 use App\Hrm\Identity\Repository\AccountRepository;
 use DateTimeImmutable;
 
@@ -14,6 +15,7 @@ class CreateCompanyHandler
     private GenerateIdentifier $generateIdentifier;
     private AccountRepository $accountRepository;
     private CompanyRepository $companyRepository;
+    private LogoFileSystem $logoFileSystem;
 
     public function __construct(
         GenerateIdentifier $generateIdentifier,
@@ -37,15 +39,18 @@ class CreateCompanyHandler
 
         $nowDateTime = new DateTimeImmutable();
 
-        // todo Do upload logo file image
-        $logoPath = null;
+        if ($command->logoFile) {
+            $logoName = $this->logoFileSystem->write($command->logoFile);
+        } else {
+            $logoName = null;
+        }
 
         $company = Company::create(
             $command->id,
             $command->name,
             $creatorAccount,
             $nowDateTime,
-            $logoPath
+            $logoName
         );
 
         if (null !== $command->address) {

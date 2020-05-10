@@ -12,7 +12,7 @@ final class Company
     private string $id;
     private string $name;
     private Account $createdBy;
-    private ?string $logoPath;
+    private ?string $logoName;
     private DateTimeImmutable $createdAt;
 
     /** @var Account[]|ArrayCollection */
@@ -44,12 +44,12 @@ final class Company
         string $name,
         Account $createdBy,
         DateTimeImmutable $createdAt,
-        ?string $logoPath = null
+        ?string $logoName = null
     ): self
     {
         Assert::uuid($id);
         Assert::lengthBetween($name, 1, 255);
-        Assert::nullOrLengthBetween($logoPath, 1, 255);
+        Assert::nullOrLengthBetween($logoName, 1, 255);
 
         $self = new self();
         $self->id = $id;
@@ -57,7 +57,7 @@ final class Company
         $self->ownerList->add($createdBy);
         $self->createdBy = $createdBy;
         $self->createdAt = $createdAt;
-        $self->logoPath = $logoPath;
+        $self->logoName = $logoName;
 
         return $self;
     }

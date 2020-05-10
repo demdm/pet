@@ -1,5 +1,4 @@
-app_hrm_company_create_company_index:
-    path:       /create
-    defaults:   { _controller: App\Hrm\CompanyBundle\Controller\CompanyController::index }
-    methods:    [GET]
-
+app_hrm_company_management_index:
+    path:       /management
+    defaults:   { _controller: App\Hrm\CompanyBundle\Controller\ManagementController::index }
+    methods:    [GET, POST]

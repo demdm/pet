@@ -6,13 +6,18 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
 {
-    private string $email;
+    private string $id;
     private string $password;
     private array $roles;
 
+    /**
+     * Return Account ID
+     *
+     * @inheritDoc
+     */
     public function getUsername(): string
     {
-        return $this->email;
+        return $this->id;
     }
 
     public function getRoles(): array
