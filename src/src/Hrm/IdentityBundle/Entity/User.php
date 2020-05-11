@@ -10,16 +10,6 @@ class User implements UserInterface
     private string $password;
     private array $roles;
 
-    public function __construct(
-        string $id,
-        string $password,
-        array $roles
-    ) {
-        $this->id = $id;
-        $this->password = $password;
-        $this->roles = $roles;
-    }
-
     /**
      * Return Account ID
      *
@@ -49,5 +39,23 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function setId(string $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+        return $this;
     }
 }

@@ -20,11 +20,13 @@ class CreateCompanyHandler
     public function __construct(
         GenerateIdentifier $generateIdentifier,
         AccountRepository $accountRepository,
-        CompanyRepository $companyRepository
+        CompanyRepository $companyRepository,
+        LogoFileSystem $logoFileSystem
     ) {
         $this->generateIdentifier = $generateIdentifier;
         $this->accountRepository = $accountRepository;
         $this->companyRepository = $companyRepository;
+        $this->logoFileSystem = $logoFileSystem;
     }
 
     /**

@@ -1,0 +1,9 @@
+<div class="alert alert-theme alert-{{ type }} alert-dismissible" role="alert">
+    <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="s7-close" aria-hidden="true"></span></button>
+    <div class="icon"><span class="s7-{{ type  }}"></span></div>
+    <div class="message">
+        {% autoescape %}
+            {{ message|raw }}
+        {% endautoescape %}
+    </div>
+</div>

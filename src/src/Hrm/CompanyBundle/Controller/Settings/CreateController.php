@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Hrm\CompanyBundle\Controller;
+namespace App\Hrm\CompanyBundle\Controller\Settings;
 
 use App\Hrm\Common\Service\GenerateIdentifier;
 use App\Hrm\Company\Message\CreateCompany;
@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ManagementController extends AbstractController
+class CreateController extends AbstractController
 {
     public function index(
         Request $request,
@@ -18,14 +18,14 @@ class ManagementController extends AbstractController
     {
         $createCompany = new CreateCompany();
 
-        $createCompanyForm = $this
+        $form = $this
             ->createForm(
                 CreateCompanyType::class,
                 $createCompany,
             )
             ->handleRequest($request);
 
-        if ($createCompanyForm->isSubmitted() && $createCompanyForm->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $createCompany->creatorAccountId = $this->getUser()->getUsername();
             $createCompany->id = $generateIdentifier->generate();
 
@@ -34,9 +34,9 @@ class ManagementController extends AbstractController
         }
 
         return $this->render(
-            '@HrmCompany/create/index.html.twig',
+            '@HrmCompany/settings/create/index.html.twig',
             [
-                'createCompanyForm' => $createCompanyForm->createView(),
+                'form' => $form->createView(),
             ]
         );
     }

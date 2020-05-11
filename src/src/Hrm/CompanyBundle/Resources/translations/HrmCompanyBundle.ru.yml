@@ -1,10 +1,8 @@
-MANAGEMENT:
-    TITLE:
-        MANAGEMENT_COMPANY: Управление компанией
-    LABEL:
-        NAME: Название
-        ADDRESS: Адрес
-        LOGO: Логотип
-HEADER:
-    CREATE_COMPANY: Создать компанию
-    REQUEST_EMPLOYEE_COMPANY: Запрос в компанию
+SETTINGS:
+    CREATE:
+        TITLE:
+            CREATE_COMPANY: Создать компанию
+        LABEL:
+            NAME: Название
+            ADDRESS: Адрес
+            LOGO: Логотип

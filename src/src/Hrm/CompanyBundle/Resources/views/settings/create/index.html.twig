@@ -1,0 +1,30 @@
+{% extends '@HrmCommon/inner_main.html.twig' %}
+
+{#{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}#}
+
+{% trans_default_domain 'HrmCompanyBundle' %}
+
+{% block title %}{{ 'SETTINGS.CREATE.TITLE.CREATE_COMPANY'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-default">
+                <div class="card-header card-header-divider">
+                    {{ 'SETTINGS.CREATE.TITLE.CREATE_COMPANY'|trans }}
+                </div>
+                <div class="card-body">
+
+
+                    {% include '@HrmCommon/inner/alert/alert.html.twig' with {
+                        'type': 'info',
+                        'message': "<strong>Привет</strong>"
+                    } %}
+
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+{% endblock %}

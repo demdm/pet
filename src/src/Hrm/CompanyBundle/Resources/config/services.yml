@@ -27,6 +27,7 @@ services:
     App\Hrm\Company\Service\LogoFileSystem:
         arguments:
             $logoPathFileDirectory: 'company_logo'
+            $filesystem: '@default.storage'
 
 
     # Repository

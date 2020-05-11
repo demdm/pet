@@ -14,4 +14,5 @@ return [
     App\Hrm\IdentityBundle\HrmIdentityBundle::class => ['all' => true],
     App\Hrm\CompanyBundle\HrmCompanyBundle::class => ['all' => true],
     App\Hrm\DashboardBundle\HrmDashboardBundle::class => ['all' => true],
+    League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
 ];
