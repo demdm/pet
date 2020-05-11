@@ -8,3 +8,13 @@ REGISTRATION:
         PASSWORD: Пароль
     BUTTON:
         SIGN_UP: Зарегистрироваться
+LOGIN:
+    TITLE:
+        LOGIN: Вход
+    LABEL:
+        EMAIL: Email
+        PASSWORD: Пароль
+    BUTTON:
+        SIGN_IN: Войти
+    HINT:
+        NOT_HAVE_ACCOUNT: У тебя нет аккаунта?

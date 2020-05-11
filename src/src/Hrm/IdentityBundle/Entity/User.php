@@ -10,6 +10,16 @@ class User implements UserInterface
     private string $password;
     private array $roles;
 
+    public function __construct(
+        string $id,
+        string $password,
+        array $roles
+    ) {
+        $this->id = $id;
+        $this->password = $password;
+        $this->roles = $roles;
+    }
+
     /**
      * Return Account ID
      *

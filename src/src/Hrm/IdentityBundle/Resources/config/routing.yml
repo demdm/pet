@@ -3,3 +3,12 @@ app_hrm_identity_registration_index:
     defaults:   { _controller: App\Hrm\IdentityBundle\Controller\RegistrationController::index }
     methods:    [GET, POST]
 
+app_hrm_identity_auth_login:
+    path:       /login
+    defaults:   { _controller: App\Hrm\IdentityBundle\Controller\AuthController::login }
+    methods:    [GET, POST]
+
+app_hrm_identity_auth_logout:
+    path:       /logout
+    defaults:   { _controller: App\Hrm\IdentityBundle\Controller\AuthController::logout }
+    methods:    [GET, POST]

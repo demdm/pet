@@ -1,4 +1,4 @@
 app_hrm_dashboard_home_index:
-    path:       /
+    path:      /dash
     defaults:   { _controller: App\Hrm\DashboardBundle\Controller\HomeController::index }
     methods:    [GET]

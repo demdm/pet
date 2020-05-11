@@ -21,6 +21,10 @@ services:
         resource: '%kernel.project_dir%/src/Hrm/Identity/MessageHandler'
         tags: ['messenger.message_handler']
 
+    # Security
+    App\Hrm\IdentityBundle\Security\LoginFormAuthenticator: ~
+    App\Hrm\IdentityBundle\Security\UserProvider: ~
+
 
     # Service
 

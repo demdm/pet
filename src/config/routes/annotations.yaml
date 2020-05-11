@@ -1,6 +1,6 @@
 app_hrm_identity:
     resource: '@HrmIdentityBundle/Resources/config/routing.yml'
-    prefix: /auth
+    prefix: /
 
 app_hrm_company:
     resource: '@HrmCompanyBundle/Resources/config/routing.yml'
@@ -8,4 +8,3 @@ app_hrm_company:
 
 app_dashboard_company:
     resource: '@HrmDashboardBundle/Resources/config/routing.yml'
-    prefix: /dash

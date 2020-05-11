@@ -92,6 +92,22 @@ final class Account
         }
     }
 
+    /**
+     * @return string
+     */
+    public function getPasswordHash(): string
+    {
+        return $this->passwordHash;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
     public function getId(): string
     {
         return $this->id;
