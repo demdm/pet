@@ -135,4 +135,28 @@ final class Company
     {
         return $this->ownerList->toArray();
     }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLogoName(): ?string
+    {
+        return $this->logoName;
+    }
+
+    /**
+     * @return Office[]|ArrayCollection
+     */
+    public function getOfficeList()
+    {
+        return $this->officeList;
+    }
 }

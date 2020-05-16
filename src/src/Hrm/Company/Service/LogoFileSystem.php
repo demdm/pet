@@ -2,6 +2,7 @@
 
 namespace App\Hrm\Company\Service;
 
+use App\Hrm\Company\Service\Exception\LogoNotExistsException;
 use App\Hrm\Company\Service\Exception\LogoNotRemovedException;
 use App\Hrm\Company\Service\Exception\LogoNotWrittenException;
 use Exception;
@@ -33,49 +34,76 @@ class LogoFileSystem
      *
      * @return string
      */
-    public function write(UploadedFile $uploadedFile)
+    public function write(UploadedFile $uploadedFile): string
     {
-        $blankContractFileName = sprintf(
+        $logoFileName = sprintf(
             '%s.%s',
             Uuid::uuid4()->toString(),
             $uploadedFile->guessExtension()
         );
 
-        $blankContractFilePath = sprintf(
+        $logoFilePath = sprintf(
             '%s/%s',
             $this->logoPathFileDirectory,
-            $blankContractFileName
+            $logoFileName
         );
 
         $stream = fopen($uploadedFile->getRealPath(), 'r+');
-        $isWrittenLogoFile = $this->filesystem->writeStream($blankContractFilePath, $stream);
+        $isWrittenLogoFile = $this->filesystem->writeStream($this->getFilePath($logoFilePath), $stream);
         fclose($stream);
 
         if (!$isWrittenLogoFile) {
             throw new LogoNotWrittenException();
         }
 
-        return $blankContractFileName;
+        return $logoFileName;
     }
 
     /**
-     * @param string $blankContractFileName
+     * @param string $logoFileName
      *
      * @throws LogoNotRemovedException
      * @throws FileNotFoundException
      */
-    public function delete($blankContractFileName)
+    public function delete($logoFileName)
     {
-        $isDeletedLogoFile = $this->filesystem->delete(
-            sprintf(
-                '%s/%s',
-                $this->logoPathFileDirectory,
-                $blankContractFileName
-            )
-        );
+        $isDeletedLogoFile = $this->filesystem->delete($this->getFilePath($logoFileName));
 
         if (!$isDeletedLogoFile) {
             throw new LogoNotRemovedException();
         }
+    }
+
+    /**
+     * @param string $fileName
+     * @return string
+     */
+    private function getFilePath(string $fileName): string
+    {
+        return sprintf(
+            '%s/%s',
+            $this->logoPathFileDirectory,
+            $fileName
+        );
+    }
+
+    /**
+     * @param string $fileName
+     * @return string
+     * @throws LogoNotExistsException
+     */
+    public function getFullFilePath(string $fileName): string
+    {
+        $filePath = sprintf(
+            '%s/%s',
+            $this->filesystem->getAdapter()->getPathPrefix(),
+            $this->getFilePath($fileName)
+        );
+
+        if (!file_exists($filePath)) {
+            throw new LogoNotExistsException();
+        }
+
+        return $filePath;
     }
 }

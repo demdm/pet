@@ -18,7 +18,7 @@ class CreateCompanyType extends AbstractType
                 TextType::class,
                 [
                     'translation_domain' => 'HrmCompanyBundle',
-                    'label'              => 'SETTINGS.CREATE.LABEL.NAME',
+                    'label'              => 'SETTINGS.MY.LABEL.NAME',
                 ]
             )
             ->add(
@@ -26,7 +26,7 @@ class CreateCompanyType extends AbstractType
                 TextType::class,
                 [
                     'translation_domain' => 'HrmCompanyBundle',
-                    'label'              => 'SETTINGS.CREATE.LABEL.ADDRESS',
+                    'label'              => 'SETTINGS.MY.LABEL.ADDRESS',
                     'required'           => false,
                 ]
             )
@@ -35,7 +35,7 @@ class CreateCompanyType extends AbstractType
                 FileType::class,
                 [
                     'translation_domain' => 'HrmCompanyBundle',
-                    'label'              => 'SETTINGS.CREATE.LABEL.LOGO',
+                    'label'              => 'SETTINGS.MY.LABEL.LOGO',
                     'required'           => false,
                 ]
             )

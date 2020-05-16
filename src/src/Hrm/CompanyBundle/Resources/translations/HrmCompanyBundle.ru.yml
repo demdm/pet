@@ -1,7 +1,8 @@
 SETTINGS:
-    CREATE:
+    MY:
         TITLE:
             CREATE_COMPANY: Создать компанию
+            EDIT_COMPANY: Изменить компанию
         LABEL:
             NAME: Название
             ADDRESS: Адрес

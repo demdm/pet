@@ -21,8 +21,8 @@ twig:
                         icon: ~
                         items:
                             -
-                                name: Создать компанию
-                                link: app_hrm_company_settings_create_index
+                                name: Моя компания
+                                link: app_hrm_company_settings_my_index
                                 icon: ~
                                 items: ~
 #                            -
