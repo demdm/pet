@@ -3,7 +3,7 @@
 docker/logs
 docker/database/data
 
-src/var
+symfony/var
 
 .env
 docker/.env
