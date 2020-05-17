@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
+import { ConfigProvider } from 'antd';
+import lang from 'antd/es/locale/ru_RU';
 
 ReactDOM.render(
-    <BrowserRouter>
-        <React.StrictMode>
-            <App/>
-        </React.StrictMode>
-    </BrowserRouter>,
+    <ConfigProvider locale={lang}>
+        <BrowserRouter>
+            <React.StrictMode>
+                <App/>
+            </React.StrictMode>
+        </BrowserRouter>
+    </ConfigProvider>,
     document.getElementById('root')
 );
 

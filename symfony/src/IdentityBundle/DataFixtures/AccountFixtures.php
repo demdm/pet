@@ -38,8 +38,7 @@ class AccountFixtures extends Fixture
 
             $message = new Registration();
             $message->uuid = $this->generateIdentifier->generate();
-            $message->firstName = $this->faker->firstName;
-            $message->lastName = $this->faker->lastName;
+            $message->name = $this->faker->userName;
             $message->email = $email;
             $message->password = $password;
 

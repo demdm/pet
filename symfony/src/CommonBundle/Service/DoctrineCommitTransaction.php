@@ -2,7 +2,6 @@
 
 namespace App\CommonBundle\Service;
 
-use App\CommonBundle\Service\CommitTransaction;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineCommitTransaction implements CommitTransaction

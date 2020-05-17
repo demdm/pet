@@ -40,8 +40,7 @@ final class RegistrationHandler
         $profile = Profile::create(
             $account,
             $this->generateIdentifier->generate(),
-            $message->firstName,
-            $message->lastName
+            $message->name
         );
 
         $profile->addContact(

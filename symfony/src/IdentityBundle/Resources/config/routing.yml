@@ -1,14 +1,14 @@
 app_identity_registration_index:
-    path:       /register
+    path:       /sign-up
     defaults:   { _controller: App\IdentityBundle\Controller\RegistrationController::index }
     methods:    [GET, POST]
 
 app_identity_auth_login:
-    path:       /login
+    path:       /sign-in
     defaults:   { _controller: App\IdentityBundle\Controller\AuthController::login }
     methods:    [GET, POST]
 
 app_identity_auth_logout:
-    path:       /logout
+    path:       /sign-out
     defaults:   { _controller: App\IdentityBundle\Controller\AuthController::logout }
     methods:    [GET, POST]

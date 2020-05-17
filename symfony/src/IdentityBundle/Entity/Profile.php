@@ -9,8 +9,7 @@ use Webmozart\Assert\Assert;
 final class Profile
 {
     private string $id;
-    private string $firstName;
-    private string $lastName;
+    private string $name;
     private ?string $middleName;
     private ?string $photoPath;
     private ?string $address;
@@ -28,19 +27,16 @@ final class Profile
     public static function create(
         Account $account,
         string $id,
-        string $firstName,
-        string $lastName
+        string $name
     ): self
     {
         Assert::uuid($id);
-        Assert::lengthBetween($firstName, 1, 50);
-        Assert::lengthBetween($lastName, 1, 100);
+        Assert::lengthBetween($name, 1, 100);
 
         $self = new self();
         $self->account = $account;
         $self->id = $id;
-        $self->firstName = $firstName;
-        $self->lastName = $lastName;
+        $self->name = $name;
 
         return $self;
     }

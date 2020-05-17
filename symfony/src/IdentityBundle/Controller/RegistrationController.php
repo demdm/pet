@@ -2,39 +2,40 @@
 
 namespace App\IdentityBundle\Controller;
 
+use App\CommonBundle\Controller\Response;
 use App\CommonBundle\Service\GenerateIdentifier;
 use App\IdentityBundle\Message\Registration;
-use App\IdentityBundle\Form\Type\RegistrationType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-final class RegistrationController extends AbstractController
+final class RegistrationController
 {
     public function index(
         Request $request,
-        GenerateIdentifier $generateIdentifier
-    ): Response
+        GenerateIdentifier $generateIdentifier,
+        MessageBusInterface $bus,
+        ValidatorInterface $validator,
+        NormalizerInterface $normalizer
+    ): JsonResponse
     {
         $registration = new Registration();
+        $registration->name = $request->request->get('name');
+        $registration->email = $request->request->get('email');
+        $registration->password = $request->request->get('password');
 
-        $form = $this->createForm(
-            RegistrationType::class,
-            $registration,
-            ['attr' => ['class' => 'form-signin']]
-        );
+        $violations = $validator->validate($registration);
 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($violations->count() > 0) {
+            $response = Response::failure($normalizer->normalize($violations));
+        } else {
             $registration->uuid = $generateIdentifier->generate();
-
-            $this->dispatchMessage($registration);
+            $bus->dispatch($registration);
+            $response = Response::success();
         }
 
-        return $this->render(
-            '@Identity/registration/index.html.twig',
-            ['form' => $form->createView()]
-        );
+        return JsonResponse::create($response);
     }
 }

@@ -1,10 +1,11 @@
 app_identity:
     resource: '@IdentityBundle/Resources/config/routing.yml'
-    prefix: /
+    prefix: api
 
 app_company:
     resource: '@CompanyBundle/Resources/config/routing.yml'
-    prefix: /dash/company
+    prefix: api/dash/company
 
 app_dashboard_company:
     resource: '@DashboardBundle/Resources/config/routing.yml'
+    prefix: api
