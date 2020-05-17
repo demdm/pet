@@ -1,0 +1,69 @@
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Controller
+    App\CompanyBundle\Controller\:
+        autowire: true
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
+    # Fixture
+    App\CompanyBundle\DataFixtures\:
+        autowire: true
+        resource: '../../DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
+    # Message Handler
+    App\CompanyBundle\MessageHandler\:
+        resource: '%kernel.project_dir%/src/CompanyBundle/MessageHandler'
+        tags: ['messenger.message_handler']
+
+
+    # Service
+
+    App\CompanyBundle\Service\LogoFileSystem:
+        arguments:
+            $logoPathFileDirectory: 'company_logo'
+            $filesystem: '@default.storage'
+
+
+    # Repository
+
+    App\CompanyBundle\Repository\CompanyRepository: '@App\CompanyBundle\Repository\DoctrineCompanyRepository'
+    App\CompanyBundle\Repository\DoctrineCompanyRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\CompanyBundle\Entity\Company
+    
+    App\CompanyBundle\Repository\OfficeRepository: '@App\CompanyBundle\Repository\DoctrineOfficeRepository'
+    App\CompanyBundle\Repository\DoctrineOfficeRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\CompanyBundle\Entity\Office
+
+    App\CompanyBundle\Repository\DepartmentRepository: '@App\CompanyBundle\Repository\DoctrineDepartmentRepository'
+    App\CompanyBundle\Repository\DoctrineDepartmentRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\CompanyBundle\Entity\Department
+
+    App\CompanyBundle\Repository\PositionRepository: '@App\CompanyBundle\Repository\DoctrinePositionRepository'
+    App\CompanyBundle\Repository\DoctrinePositionRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\CompanyBundle\Entity\Position
+
+    App\CompanyBundle\Repository\EmployeeRepository: '@App\CompanyBundle\Repository\DoctrineEmployeeRepository'
+    App\CompanyBundle\Repository\DoctrineEmployeeRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\CompanyBundle\Entity\Employee
+
+    App\CompanyBundle\Repository\EmployeeRequestRepository: '@App\CompanyBundle\Repository\DoctrineEmployeeRequestRepository'
+    App\CompanyBundle\Repository\DoctrineEmployeeRequestRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\CompanyBundle\Entity\EmployeeRequest

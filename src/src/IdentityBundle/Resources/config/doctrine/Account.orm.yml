@@ -1,0 +1,31 @@
+App\IdentityBundle\Entity\Account:
+    type: entity
+    table: identity_account
+    repositoryClass: App\IdentityBundle\Repository\DoctrineAccountRepository
+    uniqueConstraints:
+        uk__account__email:
+            columns: [ email ]
+    id:
+        id:
+            type: string
+    fields:
+        email:
+            type: string
+            length: 180
+            unique: true
+        passwordHash:
+            type: string
+            length: 255
+        roles:
+            type: simple_array
+        createdAt:
+            type: datetime_immutable
+    oneToOne:
+        profile:
+            targetEntity: App\IdentityBundle\Entity\Profile
+            mappedBy: account
+            cascade: [ persist, remove ]
+    manyToMany:
+        ownedCompanyList:
+            targetEntity: App\CompanyBundle\Entity\Company
+            mappedBy: ownerList

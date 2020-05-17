@@ -1,0 +1,53 @@
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Controller
+    App\IdentityBundle\Controller\:
+        autowire: true
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
+    # Fixture
+    App\IdentityBundle\DataFixtures\:
+        autowire: true
+        resource: '../../DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
+    # Message Handler
+    App\IdentityBundle\MessageHandler\:
+        resource: '%kernel.project_dir%/src/IdentityBundle/MessageHandler'
+        tags: ['messenger.message_handler']
+
+    # Security
+    App\IdentityBundle\Security\LoginFormAuthenticator: ~
+    App\IdentityBundle\Security\UserProvider: ~
+
+
+    # Service
+
+    App\IdentityBundle\Service\SymfonyHashPassword: ~
+    App\IdentityBundle\Service\HashPassword: '@App\IdentityBundle\Service\SymfonyHashPassword'
+    
+
+    # Repository
+
+    App\IdentityBundle\Repository\AccountRepository: '@App\IdentityBundle\Repository\DoctrineAccountRepository'
+    App\IdentityBundle\Repository\DoctrineAccountRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\IdentityBundle\Entity\Account
+
+    App\IdentityBundle\Repository\ProfileRepository: '@App\IdentityBundle\Repository\DoctrineProfileRepository'
+    App\IdentityBundle\Repository\DoctrineProfileRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\IdentityBundle\Entity\Profile
+
+    App\IdentityBundle\Repository\ContactRepository: '@App\IdentityBundle\Repository\DoctrineContactRepository'
+    App\IdentityBundle\Repository\DoctrineContactRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\IdentityBundle\Entity\Contact

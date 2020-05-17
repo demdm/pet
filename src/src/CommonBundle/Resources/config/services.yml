@@ -1,0 +1,21 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+
+    # Service
+
+    App\CommonBundle\Service\GenerateUuid: ~
+    App\CommonBundle\Service\GenerateIdentifier: '@App\CommonBundle\Service\GenerateUuid'
+    
+    App\CommonBundle\Service\DoctrineCommitTransaction: ~
+    App\CommonBundle\Service\CommitTransaction: '@App\CommonBundle\Service\DoctrineCommitTransaction'
+
+
+    # Validator
+
+    App\CommonBundle\Validator\Constraints\:
+        resource: '../../Validator/Constraints/'
+        tags:
+            - { name: validator.constraint_validator}

@@ -1,0 +1,37 @@
+App\CompanyBundle\Entity\EmployeeRequest:
+    type: entity
+    table: company_employee_request
+    repositoryClass: App\CompanyBundle\Repository\DoctrineEmployeeRequestRepository
+    id:
+        id:
+            type: string
+    fields:
+        resolvedStatus:
+            type: string
+        createdAt:
+            type: datetime
+        resolvedAt:
+            type: datetime
+            nullable: true
+    oneToOne:
+        companyId:
+            targetEntity: App\CompanyBundle\Entity\Company
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: company_id
+                referencedColumnName: id
+                nullable: false
+        employeeAccountId:
+            targetEntity: App\IdentityBundle\Entity\Account
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: employee_account_id
+                referencedColumnName: id
+                nullable: false
+        resolverAccountId:
+            targetEntity: App\IdentityBundle\Entity\Account
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: resolver_account_id
+                referencedColumnName: id
+                nullable: true

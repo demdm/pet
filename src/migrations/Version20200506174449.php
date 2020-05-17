@@ -22,7 +22,7 @@ final class Version20200506174449 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE hrm_company_employee_request (
+        $this->addSql('CREATE TABLE company_employee_request (
           id VARCHAR(255) NOT NULL, 
           company_id VARCHAR(255) NOT NULL, 
           employee_account_id VARCHAR(255) NOT NULL, 
@@ -36,22 +36,22 @@ final class Version20200506174449 extends AbstractMigration
           PRIMARY KEY(id)
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE 
-          hrm_company_employee_request 
+          company_employee_request 
         ADD 
-          CONSTRAINT FK_AF16ED6D979B1AD6 FOREIGN KEY (company_id) REFERENCES hrm_company (id)');
+          CONSTRAINT FK_AF16ED6D979B1AD6 FOREIGN KEY (company_id) REFERENCES company (id)');
         $this->addSql('ALTER TABLE 
-          hrm_company_employee_request 
+          company_employee_request 
         ADD 
-          CONSTRAINT FK_AF16ED6D3BCEF6E FOREIGN KEY (employee_account_id) REFERENCES hrm_identity_account (id)');
+          CONSTRAINT FK_AF16ED6D3BCEF6E FOREIGN KEY (employee_account_id) REFERENCES identity_account (id)');
         $this->addSql('ALTER TABLE 
-          hrm_company_employee_request 
+          company_employee_request 
         ADD 
-          CONSTRAINT FK_AF16ED6D8AAC4A9 FOREIGN KEY (resolver_account_id) REFERENCES hrm_identity_account (id)');
-        $this->addSql('ALTER TABLE hrm_identity_account CHANGE password_hash password_hash VARCHAR(255) NOT NULL');
+          CONSTRAINT FK_AF16ED6D8AAC4A9 FOREIGN KEY (resolver_account_id) REFERENCES identity_account (id)');
+        $this->addSql('ALTER TABLE identity_account CHANGE password_hash password_hash VARCHAR(255) NOT NULL');
         $this->addSql('ALTER TABLE 
-          hrm_identity_profile CHANGE photo_path photo_path VARCHAR(255) DEFAULT NULL, 
+          identity_profile CHANGE photo_path photo_path VARCHAR(255) DEFAULT NULL, 
           CHANGE address address VARCHAR(255) DEFAULT NULL');
-        $this->addSql('ALTER TABLE hrm_company CHANGE logo_path logo_path VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE company CHANGE logo_path logo_path VARCHAR(255) DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -59,13 +59,13 @@ final class Version20200506174449 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE hrm_company_employee_request');
+        $this->addSql('DROP TABLE company_employee_request');
         $this->addSql('ALTER TABLE 
-          hrm_company CHANGE logo_path logo_path VARCHAR(256) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
+          company CHANGE logo_path logo_path VARCHAR(256) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE 
-          hrm_identity_account CHANGE password_hash password_hash VARCHAR(256) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`');
+          identity_account CHANGE password_hash password_hash VARCHAR(256) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE 
-          hrm_identity_profile CHANGE photo_path photo_path VARCHAR(256) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`, 
+          identity_profile CHANGE photo_path photo_path VARCHAR(256) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`, 
           CHANGE address address VARCHAR(256) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
     }
 }

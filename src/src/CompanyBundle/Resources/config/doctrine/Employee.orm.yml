@@ -1,0 +1,72 @@
+App\CompanyBundle\Entity\Employee:
+    type: entity
+    table: company_employee
+    repositoryClass: App\CompanyBundle\Repository\DoctrineEmployeeRepository
+    id:
+        id:
+            type: string
+    fields:
+        isWorkingRemotely:
+            type: boolean
+            options:
+                default: false
+        isPending:
+            type: boolean
+            options:
+                default: false
+        isActive:
+            type: boolean
+            options:
+                default: false
+        isHired:
+            type: boolean
+            options:
+                default: false
+        isFired:
+            type: boolean
+            options:
+                default: false
+        hiredAt:
+            type: datetime
+            nullable: true
+        firedAt:
+            type: datetime
+            nullable: true
+    oneToOne:
+        account:
+            targetEntity: App\IdentityBundle\Entity\Account
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: account_id
+                referencedColumnName: id
+                nullable: false
+    manyToOne:
+        company:
+            targetEntity: App\CompanyBundle\Entity\Company
+            inversedBy: employeeList
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: company_id
+                referencedColumnName: id
+                nullable: false
+        office:
+            targetEntity: App\CompanyBundle\Entity\Office
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: office_id
+                referencedColumnName: id
+                nullable: false
+        department:
+            targetEntity: App\CompanyBundle\Entity\Department
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: department_id
+                referencedColumnName: id
+                nullable: false
+        position:
+            targetEntity: App\CompanyBundle\Entity\Position
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: position_id
+                referencedColumnName: id
+                nullable: false

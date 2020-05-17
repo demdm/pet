@@ -22,7 +22,7 @@ final class Version20200420131003 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE hrm_identity_profile (
+        $this->addSql('CREATE TABLE identity_profile (
           id VARCHAR(255) NOT NULL, 
           account_id VARCHAR(255) NOT NULL, 
           first_name VARCHAR(50) NOT NULL, 
@@ -37,7 +37,7 @@ final class Version20200420131003 extends AbstractMigration
           UNIQUE INDEX uk__profile__account_id (account_id), 
           PRIMARY KEY(id)
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE hrm_identity_profile_contact (
+        $this->addSql('CREATE TABLE identity_profile_contact (
           id VARCHAR(255) NOT NULL, 
           profile_id VARCHAR(255) NOT NULL, 
           type VARCHAR(255) NOT NULL, 
@@ -47,7 +47,7 @@ final class Version20200420131003 extends AbstractMigration
           INDEX idx__profile__profile_id (profile_id), 
           PRIMARY KEY(id)
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE hrm_identity_account (
+        $this->addSql('CREATE TABLE identity_account (
           id VARCHAR(255) NOT NULL, 
           email VARCHAR(180) NOT NULL, 
           password_hash VARCHAR(255) NOT NULL, 
@@ -57,13 +57,13 @@ final class Version20200420131003 extends AbstractMigration
           PRIMARY KEY(id)
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE 
-          hrm_identity_profile 
+          identity_profile 
         ADD 
-          CONSTRAINT FK_C6DC90309B6B5FBA FOREIGN KEY (account_id) REFERENCES hrm_identity_account (id)');
+          CONSTRAINT FK_C6DC90309B6B5FBA FOREIGN KEY (account_id) REFERENCES identity_account (id)');
         $this->addSql('ALTER TABLE 
-          hrm_identity_profile_contact 
+          identity_profile_contact 
         ADD 
-          CONSTRAINT FK_5186E32BCCFA12B8 FOREIGN KEY (profile_id) REFERENCES hrm_identity_profile (id)');
+          CONSTRAINT FK_5186E32BCCFA12B8 FOREIGN KEY (profile_id) REFERENCES identity_profile (id)');
     }
 
     public function down(Schema $schema) : void
@@ -71,10 +71,10 @@ final class Version20200420131003 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE hrm_identity_profile_contact DROP FOREIGN KEY FK_5186E32BCCFA12B8');
-        $this->addSql('ALTER TABLE hrm_identity_profile DROP FOREIGN KEY FK_C6DC90309B6B5FBA');
-        $this->addSql('DROP TABLE hrm_identity_profile');
-        $this->addSql('DROP TABLE hrm_identity_profile_contact');
-        $this->addSql('DROP TABLE hrm_identity_account');
+        $this->addSql('ALTER TABLE identity_profile_contact DROP FOREIGN KEY FK_5186E32BCCFA12B8');
+        $this->addSql('ALTER TABLE identity_profile DROP FOREIGN KEY FK_C6DC90309B6B5FBA');
+        $this->addSql('DROP TABLE identity_profile');
+        $this->addSql('DROP TABLE identity_profile_contact');
+        $this->addSql('DROP TABLE identity_account');
     }
 }

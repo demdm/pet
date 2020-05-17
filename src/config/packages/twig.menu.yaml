@@ -8,7 +8,7 @@ twig:
                 items:
                     -
                         name: Dashboard
-                        link: app_hrm_dashboard_home_index
+                        link: app_dashboard_home_index
                         icon: monitor
                         items: ~
             -
@@ -22,7 +22,7 @@ twig:
                         items:
                             -
                                 name: Моя компания
-                                link: app_hrm_company_settings_my_index
+                                link: app_company_settings_my_index
                                 icon: ~
                                 items: ~
 #                            -

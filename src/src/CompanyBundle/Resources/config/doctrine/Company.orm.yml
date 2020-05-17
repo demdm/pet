@@ -1,0 +1,49 @@
+App\CompanyBundle\Entity\Company:
+    type: entity
+    table: company
+    repositoryClass: App\CompanyBundle\Repository\DoctrineCompanyRepository
+    id:
+        id:
+            type: string
+    fields:
+        name:
+            type: string
+        logoName:
+            type: string
+            length: 255
+            nullable: true
+        createdAt:
+            type: datetime_immutable
+    oneToOne:
+        createdBy:
+            targetEntity: App\IdentityBundle\Entity\Account
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: created_by
+                referencedColumnName: id
+                nullable: false
+    oneToMany:
+        officeList:
+            targetEntity: App\CompanyBundle\Entity\Office
+            cascade: [ persist, remove ]
+            mappedBy: company
+        positionList:
+            targetEntity: App\CompanyBundle\Entity\Position
+            cascade: [ persist, remove ]
+            mappedBy: company
+        departmentList:
+            targetEntity: App\CompanyBundle\Entity\Department
+            cascade: [ persist, remove ]
+            mappedBy: company
+    manyToMany:
+        ownerList:
+            targetEntity: App\IdentityBundle\Entity\Account
+            inversedBy: ownedCompanyList
+            joinTable:
+                name: company_owner
+                joinColumns:
+                    account_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    company_id:
+                        referencedColumnName: id

@@ -1,0 +1,21 @@
+App\CompanyBundle\Entity\Office:
+    type: entity
+    table: company_office
+    repositoryClass: App\CompanyBundle\Repository\DoctrineOfficeRepository
+    id:
+        id:
+            type: string
+    fields:
+        address:
+            type: string
+        createdAt:
+            type: datetime_immutable
+    manyToOne:
+        company:
+            targetEntity: App\CompanyBundle\Entity\Company
+            mappedBy: officeList
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: company_id
+                referencedColumnName: id
+                nullable: false

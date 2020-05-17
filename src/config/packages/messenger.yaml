@@ -34,5 +34,5 @@ framework:
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
-            App\Hrm\Identity\Message\Registration: sync
-            App\Hrm\Company\Message\CreateCompany: sync
+            App\IdentityBundle\Message\Registration: sync
+            App\CompanyBundle\Message\CreateCompany: sync

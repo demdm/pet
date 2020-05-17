@@ -1,0 +1,29 @@
+App\IdentityBundle\Entity\Contact:
+    type: entity
+    table: identity_profile_contact
+    repositoryClass: App\IdentityBundle\Repository\DoctrineContactRepository
+    indexes:
+        idx__profile__profile_id:
+            columns: [ profile_id ]
+    id:
+        id:
+            type: string
+    fields:
+        profileId:
+            type: string
+        type:
+            type: string
+        value:
+            type: string
+        description:
+            type: string
+            nullable: true
+        isPublic:
+            type: boolean
+            options:
+                default: false
+    manyToOne:
+        profile:
+            targetEntity: App\IdentityBundle\Entity\Profile
+            inversedBy: contactList
+            cascade: [ persist, remove ]

@@ -1,10 +1,10 @@
-app_hrm_identity:
-    resource: '@HrmIdentityBundle/Resources/config/routing.yml'
+app_identity:
+    resource: '@IdentityBundle/Resources/config/routing.yml'
     prefix: /
 
-app_hrm_company:
-    resource: '@HrmCompanyBundle/Resources/config/routing.yml'
+app_company:
+    resource: '@CompanyBundle/Resources/config/routing.yml'
     prefix: /dash/company
 
 app_dashboard_company:
-    resource: '@HrmDashboardBundle/Resources/config/routing.yml'
+    resource: '@DashboardBundle/Resources/config/routing.yml'

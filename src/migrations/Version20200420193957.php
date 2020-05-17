@@ -22,7 +22,7 @@ final class Version20200420193957 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE hrm_company_office CHANGE company_id company_id VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE company_office CHANGE company_id company_id VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -31,6 +31,6 @@ final class Version20200420193957 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE 
-          hrm_company_office CHANGE company_id company_id VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
+          company_office CHANGE company_id company_id VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
     }
 }

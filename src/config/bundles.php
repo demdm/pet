@@ -10,9 +10,9 @@ return [
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
-    App\Hrm\CommonBundle\HrmCommonBundle::class => ['all' => true],
-    App\Hrm\IdentityBundle\HrmIdentityBundle::class => ['all' => true],
-    App\Hrm\CompanyBundle\HrmCompanyBundle::class => ['all' => true],
-    App\Hrm\DashboardBundle\HrmDashboardBundle::class => ['all' => true],
+    App\CommonBundle\CommonBundle::class => ['all' => true],
+    App\IdentityBundle\IdentityBundle::class => ['all' => true],
+    App\CompanyBundle\CompanyBundle::class => ['all' => true],
+    App\DashboardBundle\DashboardBundle::class => ['all' => true],
     League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
 ];

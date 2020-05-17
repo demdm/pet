@@ -22,7 +22,7 @@ final class Version20200420150946 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE hrm_company (
+        $this->addSql('CREATE TABLE company (
           id VARCHAR(255) NOT NULL, 
           created_by VARCHAR(255) NOT NULL, 
           name VARCHAR(255) NOT NULL, 
@@ -31,7 +31,7 @@ final class Version20200420150946 extends AbstractMigration
           UNIQUE INDEX UNIQ_80D5C29CDE12AB56 (created_by), 
           PRIMARY KEY(id)
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE hrm_company_office (
+        $this->addSql('CREATE TABLE company_office (
           id VARCHAR(255) NOT NULL, 
           company_id VARCHAR(255) DEFAULT NULL, 
           address VARCHAR(255) NOT NULL, 
@@ -40,13 +40,13 @@ final class Version20200420150946 extends AbstractMigration
           PRIMARY KEY(id)
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE 
-          hrm_company 
+          company 
         ADD 
-          CONSTRAINT FK_80D5C29CDE12AB56 FOREIGN KEY (created_by) REFERENCES hrm_identity_account (id)');
+          CONSTRAINT FK_80D5C29CDE12AB56 FOREIGN KEY (created_by) REFERENCES identity_account (id)');
         $this->addSql('ALTER TABLE 
-          hrm_company_office 
+          company_office 
         ADD 
-          CONSTRAINT FK_55666964979B1AD6 FOREIGN KEY (company_id) REFERENCES hrm_company (id)');
+          CONSTRAINT FK_55666964979B1AD6 FOREIGN KEY (company_id) REFERENCES company (id)');
     }
 
     public function down(Schema $schema) : void
@@ -54,8 +54,8 @@ final class Version20200420150946 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE hrm_company_office DROP FOREIGN KEY FK_55666964979B1AD6');
-        $this->addSql('DROP TABLE hrm_company');
-        $this->addSql('DROP TABLE hrm_company_office');
+        $this->addSql('ALTER TABLE company_office DROP FOREIGN KEY FK_55666964979B1AD6');
+        $this->addSql('DROP TABLE company');
+        $this->addSql('DROP TABLE company_office');
     }
 }

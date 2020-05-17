@@ -1,0 +1,4 @@
+app_company_settings_my_index:
+    path:       /settings/create
+    defaults:   { _controller: App\CompanyBundle\Controller\Settings\MyCompanyController::index }
+    methods:    [GET, POST]

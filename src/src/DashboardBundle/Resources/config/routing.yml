@@ -1,0 +1,4 @@
+app_dashboard_home_index:
+    path:      /dash
+    defaults:   { _controller: App\DashboardBundle\Controller\HomeController::index }
+    methods:    [GET]

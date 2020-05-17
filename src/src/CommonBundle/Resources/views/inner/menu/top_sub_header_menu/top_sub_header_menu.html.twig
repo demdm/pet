@@ -1,0 +1,64 @@
+<div class="navbar-collapse collapse mai-nav-tabs" id="mai-navbar-collapse">
+    <ul class="nav navbar-nav">
+        {% for parent_item in menu %}
+            <li class="nav-item parent">
+                {% include '@Common/inner/menu/top_sub_header_menu/nav_link.html.twig' with {
+                    'item': parent_item,
+                    'parent': true
+                } %}
+                <ul class="mai-nav-tabs-sub mai-sub-nav nav">
+                    {% for item in parent_item.items %}
+                        {% if item.items is not empty %}
+                            {# mega menu #}
+                            {% if item.mega_menu_item is defined %}
+                                <li class="nav-item dropdown parent mega-menu">
+                                    {% include '@Common/inner/menu/top_sub_header_menu/nav_link.html.twig' with {
+                                        'item': item,
+                                        'dropdown': true
+                                    } %}
+                                    <div class="dropdown-menu mai-mega-menu mai-sub-nav" role="menu">
+                                        <div class="mai-mega-menu-row">
+                                            {% for child_items in item.items %}
+                                                <div class="mai-mega-menu-column">
+                                                    {% if child_items.name is defined %}
+                                                        {% include '@Common/inner/menu/top_sub_header_menu/mega_menu_section.html.twig' with {
+                                                            'item': child_items
+                                                        } %}
+                                                    {% else %}
+                                                        {% for sub_child_item in child_items %}
+                                                            {% include '@Common/inner/menu/top_sub_header_menu/mega_menu_section.html.twig' with {
+                                                                'item': sub_child_item
+                                                            } %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </li>
+                            {% else %}
+                                <li class="nav-item dropdown parent">
+                                    {% include '@Common/inner/menu/top_sub_header_menu/nav_link.html.twig' with {
+                                        'item': item,
+                                        'dropdown': true
+                                    } %}
+                                    <div class="dropdown-menu mai-sub-nav" role="menu">
+                                        {% for child_item in item.items %}
+                                            {% include '@Common/inner/menu/top_sub_header_menu/dropdown_item.html.twig' with {
+                                                'item': child_item
+                                            } %}
+                                        {% endfor %}
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% else %}
+                            <li class="nav-item">
+                                {% include '@Common/inner/menu/top_sub_header_menu/nav_link.html.twig' with item %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

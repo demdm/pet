@@ -22,7 +22,7 @@ final class Version20200420152912 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE hrm_company_owner (
+        $this->addSql('CREATE TABLE company_owner (
           account_id VARCHAR(255) NOT NULL, 
           company_id VARCHAR(255) NOT NULL, 
           INDEX IDX_4C9635489B6B5FBA (account_id), 
@@ -30,13 +30,13 @@ final class Version20200420152912 extends AbstractMigration
           PRIMARY KEY(account_id, company_id)
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE 
-          hrm_company_owner 
+          company_owner 
         ADD 
-          CONSTRAINT FK_4C9635489B6B5FBA FOREIGN KEY (account_id) REFERENCES hrm_company (id)');
+          CONSTRAINT FK_4C9635489B6B5FBA FOREIGN KEY (account_id) REFERENCES company (id)');
         $this->addSql('ALTER TABLE 
-          hrm_company_owner 
+          company_owner 
         ADD 
-          CONSTRAINT FK_4C963548979B1AD6 FOREIGN KEY (company_id) REFERENCES hrm_identity_account (id)');
+          CONSTRAINT FK_4C963548979B1AD6 FOREIGN KEY (company_id) REFERENCES identity_account (id)');
     }
 
     public function down(Schema $schema) : void
@@ -44,6 +44,6 @@ final class Version20200420152912 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE hrm_company_owner');
+        $this->addSql('DROP TABLE company_owner');
     }
 }

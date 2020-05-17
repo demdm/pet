@@ -1,6 +1,6 @@
 security:
     encoders:
-        App\Hrm\IdentityBundle\Entity\User:
+        App\IdentityBundle\Security\User:
             algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -8,11 +8,11 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
 #        app_user_provider:
 #            entity:
-#                class: App\Hrm\IdentityBundle\Entity\User
+#                class: App\IdentityBundle\Security\User
 #                property: id
 
         account_user_provider:
-            id: App\Hrm\IdentityBundle\Security\UserProvider
+            id: App\IdentityBundle\Security\UserProvider
 
     firewalls:
         dev:
@@ -28,11 +28,11 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             guard:
                 authenticators:
-                    - App\Hrm\IdentityBundle\Security\LoginFormAuthenticator
+                    - App\IdentityBundle\Security\LoginFormAuthenticator
             logout:
-                path: app_hrm_identity_auth_logout
+                path: app_identity_auth_logout
                 # where to redirect after logout
-                target: app_hrm_identity_auth_login
+                target: app_identity_auth_login
 
             switch_user: false
 

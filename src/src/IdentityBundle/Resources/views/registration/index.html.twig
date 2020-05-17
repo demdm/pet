@@ -1,0 +1,43 @@
+{% extends '@Common/outer_main.html.twig' %}
+
+{% trans_default_domain 'IdentityBundle' %}
+
+{% block title %}{{ 'REGISTRATION.TITLE.REGISTRATION'|trans }}{% endblock %}
+
+{% block bodyClass %}mai-splash-screen{% endblock %}
+
+{% block body %}
+    <div class="mai-wrapper mai-sign-up">
+        <div class="main-content container">
+            <div class="splash-container row">
+                <div class="col-md-6 form-message">
+                    <img class="logo-img mb-4"
+                         src="{{ asset('assets/img/logo-2x.png') }}"
+                         alt="logo"
+                         width="169"
+                         height="28"
+                    >
+                    <span class="splash-description text-center mt-4 mb-4">{{ 'REGISTRATION.TITLE.REGISTRATION'|trans }}</span>
+
+                    {{ form_start(form, {'attr': {'class': 'sign-up-form'}}) }}
+
+                        {{ form_row(form.firstName) }}
+                        {{ form_row(form.lastName) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.password) }}
+                        {{ form_row(form.submit, {
+                            'attr': {'class': 'btn btn-lg btn-primary btn-block'},
+                            'row_attr': {'class': 'sign-up-submit'}
+                        }) }}
+
+                        <p class="conditions">By creating an account, you agree with the <a href="#">Terms and Conditions</a>.</p>
+
+                    {{ form_end(form) }}
+
+                    <div class="out-links"><a href="#">© {{ "now"|date("Y") }} HRM Company</a></div>
+                </div>
+                <div class="col-md-6 user-message"><span class="splash-message text-left">Welcome to<br> Maisonette<br> Enjoy</span><span class="alternative-message text-right">Don't have an account? <a href="pages-sign-up.php">Sign Up</a></span></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
