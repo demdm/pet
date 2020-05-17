@@ -42,8 +42,21 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d
       - ./logs:/var/log
       - ./logs/nginx/error.log:/var/log/nginx/error.log
+      - ./logs/nginx/access.log:/var/log/nginx/access.log
     depends_on:
       - php-fpm
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
+
+  reactjs:
+    build: ../reactjs
+    container_name: reactjs
+    # command: sh -c 'cd /var/www/react npm install' #sh -c 'cd /var/www/react npm run-script build'
+    volumes:
+      - ../reactjs:/var/www
+      - ../reactjs/node_modules:/var/www/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
