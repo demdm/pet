@@ -22,9 +22,9 @@ final class RegistrationController
     ): JsonResponse
     {
         $registration = new Registration();
-        $registration->name = $request->request->get('name');
-        $registration->email = $request->request->get('email');
-        $registration->password = $request->request->get('password');
+        $registration->name = $request->get('name');
+        $registration->email = $request->get('email');
+        $registration->password = $request->get('password');
 
         $violations = $validator->validate($registration);
 
