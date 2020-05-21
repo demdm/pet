@@ -2,6 +2,7 @@
 
 namespace App\IdentityBundle\Security;
 
+use App\IdentityBundle\Entity\Account;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
@@ -57,5 +58,15 @@ class User implements UserInterface
     {
         $this->roles = $roles;
         return $this;
+    }
+
+    public static function mapFromAccount(Account $account): self
+    {
+        $user = new self();
+        $user->id = $account->getId();
+        $user->password = $account->getPasswordHash();
+        $user->roles = $account->getRoles();
+
+        return $user;
     }
 }

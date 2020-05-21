@@ -2,34 +2,66 @@
 
 namespace App\IdentityBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\CommonBundle\Controller\Response;
+use App\CommonBundle\Service\GenerateIdentifier;
+use App\IdentityBundle\Message\SignInByAccessToken;
+use App\IdentityBundle\Service\ValidatePassword;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-final class AuthController extends AbstractController
+final class AuthController
 {
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('app_dashboard_home_index');
+    public function signIn(
+        Request $request,
+        GenerateIdentifier $generateIdentifier,
+        ValidatePassword $validatePassword,
+        MessageBusInterface $bus,
+        ValidatorInterface $validator,
+        NormalizerInterface $normalizer
+    ) {
+        $accessToken = $generateIdentifier->generate();
+
+        $signInByAccessToken = new SignInByAccessToken(
+            $accessToken,
+            $request->get('email', ''),
+            $request->get('password', '')
+        );
+
+        $violations = $validator->validate($signInByAccessToken);
+
+        if ($violations->count() > 0) {
+            return JsonResponse::create(Response::failure($normalizer->normalize($violations)));
         }
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('@Identity/auth/login.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error
-        ]);
-    }
-
-    public function logout()
-    {
-        throw new \LogicException(
-            'This method can be blank - it will be intercepted by the logout key on your firewall.'
+        $isPasswordValid = $validatePassword->validate(
+            $signInByAccessToken->email,
+            $signInByAccessToken->password
         );
+
+        // password not valid
+        if (!$isPasswordValid) {
+            $violations->add(
+                new ConstraintViolation(
+                    'Не верный пароль',
+                    '',
+                    array(),
+                    null,
+                    'password',
+                    null
+                )
+            );
+
+            return JsonResponse::create(Response::failure($normalizer->normalize($violations)));
+        }
+
+        $bus->dispatch($signInByAccessToken);
+
+        return JsonResponse::create(Response::success([
+            'token' => $accessToken
+        ]));
     }
 }

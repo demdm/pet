@@ -11,7 +11,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-final class RegistrationController
+final class SignUpController
 {
     public function index(
         Request $request,
@@ -21,17 +21,18 @@ final class RegistrationController
         NormalizerInterface $normalizer
     ): JsonResponse
     {
-        $registration = new Registration();
-        $registration->name = $request->get('name');
-        $registration->email = $request->get('email');
-        $registration->password = $request->get('password');
+        $registration = new Registration(
+            $generateIdentifier->generate(),
+            $request->get('name', ''),
+            $request->get('email', ''),
+            $request->get('password', ''),
+        );
 
         $violations = $validator->validate($registration);
 
         if ($violations->count() > 0) {
             $response = Response::failure($normalizer->normalize($violations));
         } else {
-            $registration->uuid = $generateIdentifier->generate();
             $bus->dispatch($registration);
             $response = Response::success();
         }

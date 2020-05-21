@@ -2,21 +2,18 @@
 
 namespace App\IdentityBundle\Message;
 
-final class Registration
+final class SignInByAccessToken
 {
-    public string $uuid;
-    public string $name;
+    public string $accessToken;
     public string $email;
     public string $password;
 
     public function __construct(
-        string $uuid,
-        string $name,
+        string $accessToken,
         string $email,
         string $password
     ) {
-        $this->uuid = $uuid;
-        $this->name = $name;
+        $this->accessToken = $accessToken;
         $this->email = $email;
         $this->password = $password;
     }

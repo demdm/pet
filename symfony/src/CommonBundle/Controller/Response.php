@@ -6,12 +6,14 @@ class Response
 {
     public bool $isSuccess;
     public array $violations = [];
+    public array $data = [];
 
-    public static function success(): self
+    public static function success(array $data = []): self
     {
         $self = new static();
 
         $self->isSuccess = true;
+        $self->data = $data;
 
         return $self;
     }

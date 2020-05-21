@@ -22,7 +22,7 @@ services:
         tags: ['messenger.message_handler']
 
     # Security
-    App\IdentityBundle\Security\LoginFormAuthenticator: ~
+    App\IdentityBundle\Security\TokenAuthenticator: ~
     App\IdentityBundle\Security\UserProvider: ~
 
 
@@ -30,7 +30,10 @@ services:
 
     App\IdentityBundle\Service\SymfonyHashPassword: ~
     App\IdentityBundle\Service\HashPassword: '@App\IdentityBundle\Service\SymfonyHashPassword'
-    
+
+    App\IdentityBundle\Service\SymfonyValidatePassword: ~
+    App\IdentityBundle\Service\ValidatePassword: '@App\IdentityBundle\Service\SymfonyValidatePassword'
+
 
     # Repository
 
@@ -51,3 +54,9 @@ services:
         factory: ['@doctrine', getRepository]
         arguments:
             - App\IdentityBundle\Entity\Contact
+
+    App\IdentityBundle\Repository\AccessTokenRepository: '@App\IdentityBundle\Repository\DoctrineAccessTokenRepository'
+    App\IdentityBundle\Repository\DoctrineAccessTokenRepository:
+        factory: ['@doctrine', getRepository]
+        arguments:
+            - App\IdentityBundle\Entity\AccessToken

@@ -28,7 +28,7 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             guard:
                 authenticators:
-                    - App\IdentityBundle\Security\LoginFormAuthenticator
+                    - App\IdentityBundle\Security\TokenAuthenticator
             logout:
                 path: app_identity_auth_logout
                 # where to redirect after logout

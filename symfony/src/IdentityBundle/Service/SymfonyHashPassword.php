@@ -5,7 +5,7 @@ namespace App\IdentityBundle\Service;
 use App\IdentityBundle\Security\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-final class SymfonyHashPassword implements HashPassword
+class SymfonyHashPassword implements HashPassword
 {
     private UserPasswordEncoderInterface $userPasswordEncoder;
 

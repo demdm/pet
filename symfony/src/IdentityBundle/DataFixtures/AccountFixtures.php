@@ -36,11 +36,12 @@ class AccountFixtures extends Fixture
                 $password = $this->faker->password;
             }
 
-            $message = new Registration();
-            $message->uuid = $this->generateIdentifier->generate();
-            $message->name = $this->faker->userName;
-            $message->email = $email;
-            $message->password = $password;
+            $message = new Registration(
+                $this->generateIdentifier->generate(),
+                $this->faker->userName,
+                $email,
+                $password,
+            );
 
             $this->registrationMessageHandler->__invoke($message);
         }

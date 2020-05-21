@@ -1,0 +1,26 @@
+App\IdentityBundle\Entity\AccessToken:
+    type: entity
+    table: identity_access_token
+    repositoryClass: App\IdentityBundle\Repository\DoctrineAccessTokenRepository
+    id:
+        id:
+            type: integer
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        accessToken:
+            type: string
+            length: 255
+            unique: true
+    manyToOne:
+        account:
+            targetEntity: App\IdentityBundle\Entity\Account
+            mappedBy: account
+            cascade: [ persist, remove ]
+            joinColumn:
+                name: account_id
+                referencedColumnName: id
+                nullable: false

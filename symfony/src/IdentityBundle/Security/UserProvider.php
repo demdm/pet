@@ -33,12 +33,7 @@ class UserProvider implements UserProviderInterface
     {
         $account = $this->accountRepository->getOneBy(['email' => $email]);
 
-        $user = new User();
-        $user->setId($account->getId());
-        $user->setPassword($account->getPasswordHash());
-        $user->setRoles($account->getRoles());
-
-        return $user;
+        return User::mapFromAccount($account);
     }
 
     /**
@@ -64,12 +59,7 @@ class UserProvider implements UserProviderInterface
 
         $account = $this->accountRepository->get($user->getUsername());
 
-        $user = new User();
-        $user->setId($account->getId());
-        $user->setPassword($account->getPasswordHash());
-        $user->setRoles($account->getRoles());
-
-        return $user;
+        return User::mapFromAccount($account);
     }
 
     /**
