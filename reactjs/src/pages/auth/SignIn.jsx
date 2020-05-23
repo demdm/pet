@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Card,
     Form,
@@ -10,6 +10,7 @@ import {
 } from 'antd';
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import {authenticate, getTokenValue} from "../../services/security/Identifier";
 
 const layout = {
     labelCol: {
@@ -28,14 +29,18 @@ const tailLayout = {
 
 const SignIn = () => {
     const [form] = Form.useForm();
+    const [submitLoading, setSubmitLoading] = useState(false);
 
     const onFinish = values => {
+        setSubmitLoading(true);
+
+        // axios.defaults.headers['X-AUTH-TOKEN'] = getTokenValue();
+        // axios.defaults.headers.common['X-AUTH-TOKEN'] = getTokenValue();
+
         axios
-            .post('sign-in', values)
+            .post('http://localhost/api/sign-in', values)
             .then(response => {
                 let {data, status} = response;
-
-                console.log(values);
 
                 if (status !== 200) {
                     message.error(`Ошибка на сервере. Код ответа: ${status}.`);
@@ -55,12 +60,17 @@ const SignIn = () => {
                     return;
                 }
 
-                // @todo: getting token and save in storage
-                // send token in every request header by name 'X-AUTH-TOKEN'
+                form.resetFields();
+
+                authenticate(data.data.token)
             })
             .catch(error => {
                 message.error('Непредвиденная ошибка.');
-            });
+            })
+            .finally(() => {
+                setSubmitLoading(false);
+            })
+        ;
     };
 
     const onFinishFailed = errorInfo => {
@@ -112,7 +122,7 @@ const SignIn = () => {
                         </Form.Item>
 
                         <Form.Item {...tailLayout} style={{marginBottom: 0}}>
-                            <Button type="primary" htmlType="submit">
+                            <Button type="primary" htmlType="submit" loading={submitLoading}>
                                 Войти
                             </Button>
                             <p>
